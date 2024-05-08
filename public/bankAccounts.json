@@ -1,0 +1,133 @@
+{
+  "Accounts": [
+    {
+      "updatedDateUTCAsDate": {
+        "offset": {
+          "totalSeconds": 0,
+          "id": "Z",
+          "rules": {
+            "fixedOffset": true,
+            "transitions": [],
+            "transitionRules": []
+          }
+        },
+        "nano": 670000000,
+        "year": 2023,
+        "monthValue": 9,
+        "dayOfMonth": 21,
+        "hour": 2,
+        "minute": 28,
+        "second": 56,
+        "month": "SEPTEMBER",
+        "dayOfWeek": "THURSDAY",
+        "dayOfYear": 264
+      },
+      "Code": null,
+      "Name": "Alive Current Account",
+      "AccountID": "958b99ba-d3a6-4751-aaf2-d5d3a095f929",
+      "Type": "BANK",
+      "BankAccountNumber": "1045660117300676789",
+      "Status": "ACTIVE",
+      "Description": null,
+      "BankAccountType": "BANK",
+      "CurrencyCode": "USD",
+      "TaxType": "NONE",
+      "EnablePaymentsToAccount": false,
+      "ShowInExpenseClaims": false,
+      "Class": "ASSET",
+      "SystemAccount": null,
+      "ReportingCode": "ASS.CUR.CAS.CAS",
+      "ReportingCodeName": "Cash on hand",
+      "HasAttachments": false,
+      "UpdatedDateUTC": "/Date(1695263336670+0000)/",
+      "AddToWatchlist": false,
+      "ValidationErrors": []
+    },
+    {
+      "updatedDateUTCAsDate": {
+        "offset": {
+          "totalSeconds": 0,
+          "id": "Z",
+          "rules": {
+            "fixedOffset": true,
+            "transitions": [],
+            "transitionRules": []
+          }
+        },
+        "nano": 450000000,
+        "year": 2023,
+        "monthValue": 11,
+        "dayOfMonth": 5,
+        "hour": 23,
+        "minute": 1,
+        "second": 27,
+        "month": "NOVEMBER",
+        "dayOfWeek": "SUNDAY",
+        "dayOfYear": 309
+      },
+      "Code": "001",
+      "Name": "Alive Savings Account",
+      "AccountID": "cd8ac010-5fc5-457c-8c7b-28382e92e4cd",
+      "Type": "BANK",
+      "BankAccountNumber": "1891250116401391234",
+      "Status": "ACTIVE",
+      "Description": null,
+      "BankAccountType": "BANK",
+      "CurrencyCode": "USD",
+      "TaxType": "NONE",
+      "EnablePaymentsToAccount": false,
+      "ShowInExpenseClaims": false,
+      "Class": "ASSET",
+      "SystemAccount": null,
+      "ReportingCode": "ASS.CUR.CAS.CAS",
+      "ReportingCodeName": "Cash on hand",
+      "HasAttachments": false,
+      "UpdatedDateUTC": "/Date(1699225287450+0000)/",
+      "AddToWatchlist": false,
+      "ValidationErrors": []
+    },
+    {
+      "updatedDateUTCAsDate": {
+        "offset": {
+          "totalSeconds": 0,
+          "id": "Z",
+          "rules": {
+            "fixedOffset": true,
+            "transitions": [],
+            "transitionRules": []
+          }
+        },
+        "nano": 337000000,
+        "year": 2023,
+        "monthValue": 10,
+        "dayOfMonth": 1,
+        "hour": 0,
+        "minute": 46,
+        "second": 39,
+        "month": "OCTOBER",
+        "dayOfWeek": "SUNDAY",
+        "dayOfYear": 274
+      },
+      "Code": "990",
+      "Name": "Alive HSBC Account",
+      "AccountID": "85162b0f-b567-4416-943f-504fe7609814",
+      "Type": "BANK",
+      "BankAccountNumber": "12100012380976",
+      "Status": "ACTIVE",
+      "Description": null,
+      "BankAccountType": "BANK",
+      "CurrencyCode": "USD",
+      "TaxType": "NONE",
+      "EnablePaymentsToAccount": false,
+      "ShowInExpenseClaims": false,
+      "Class": "ASSET",
+      "SystemAccount": null,
+      "ReportingCode": "ASS.CUR.CAS.CAS",
+      "ReportingCodeName": "Cash on hand",
+      "HasAttachments": false,
+      "UpdatedDateUTC": "/Date(1696121199337+0000)/",
+      "AddToWatchlist": false,
+      "ValidationErrors": []
+    }
+  ]
+}

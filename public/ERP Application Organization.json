@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Xero",
+    "organizations": [
+      {
+        "orgId": "Org1",
+        "orgName": "Org One"
+      },
+      {
+        "orgId": "Org2",
+        "orgName": "Org Two"
+      }
+    ]
+  },
+  {
+    "name": "QuickBooks",
+    "organizations": [
+      {
+        "orgId": "Org3",
+        "orgName": "Org Three"
+      },
+      {
+        "orgId": "Org4",
+        "orgName": "Org Four"
+      }
+    ]
+  }
+]

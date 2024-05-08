@@ -1,0 +1,382 @@
+{
+  "Contacts": [
+    {
+      "updatedDateUTCAsDate": {
+        "offset": {
+          "totalSeconds": 0,
+          "id": "Z",
+          "rules": {
+            "fixedOffset": true,
+            "transitions": [],
+            "transitionRules": []
+          }
+        },
+        "nano": 207000000,
+        "year": 2023,
+        "monthValue": 9,
+        "dayOfMonth": 21,
+        "hour": 2,
+        "minute": 20,
+        "second": 51,
+        "month": "SEPTEMBER",
+        "dayOfWeek": "THURSDAY",
+        "dayOfYear": 264
+      },
+      "ContactID": "57bbd242-6894-46f1-8a34-f8ab3e08ac1f",
+      "MergedToContactID": null,
+      "ContactNumber": null,
+      "AccountNumber": "VEN00001",
+      "ContactStatus": "ACTIVE",
+      "Name": "Verizon",
+      "FirstName": "John",
+      "LastName": "Doe",
+      "CompanyNumber": null,
+      "EmailAddress": "jdo@verizon.com",
+      "ContactPersons": [],
+      "BankAccountDetails": "01239087698076598012",
+      "TaxNumber": null,
+      "AccountsReceivableTaxType": null,
+      "AccountsPayableTaxType": null,
+      "Addresses": [
+        {
+          "AddressType": "POBOX",
+          "AddressLine1": "10 Wood St",
+          "AddressLine2": null,
+          "AddressLine3": null,
+          "AddressLine4": null,
+          "City": "Lowell",
+          "Region": "MA",
+          "PostalCode": "01851",
+          "Country": "USA",
+          "AttentionTo": null
+        },
+        {
+          "AddressType": "STREET",
+          "AddressLine1": "10 Wood St",
+          "AddressLine2": null,
+          "AddressLine3": null,
+          "AddressLine4": null,
+          "City": "Lowell",
+          "Region": "MA",
+          "PostalCode": "01851",
+          "Country": "USA",
+          "AttentionTo": null
+        }
+      ],
+      "Phones": [
+        {
+          "PhoneType": "DDI",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "DEFAULT",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "FAX",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "MOBILE",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        }
+      ],
+      "IsSupplier": true,
+      "IsCustomer": false,
+      "SalesDefaultLineAmountType": null,
+      "PurchasesDefaultLineAmountType": null,
+      "DefaultCurrency": null,
+      "XeroNetworkKey": null,
+      "SalesDefaultAccountCode": null,
+      "PurchasesDefaultAccountCode": null,
+      "SalesTrackingCategories": [],
+      "PurchasesTrackingCategories": [],
+      "TrackingCategoryName": null,
+      "TrackingCategoryOption": null,
+      "PaymentTerms": {
+        "Bills": { "Day": 30, "Type": "DAYSAFTERBILLDATE" },
+        "Sales": null
+      },
+      "UpdatedDateUTC": "/Date(1695262851207+0000)/",
+      "ContactGroups": [],
+      "Website": null,
+      "BrandingTheme": null,
+      "BatchPayments": {
+        "BankAccountNumber": "01239087698076598012",
+        "BankAccountName": "Verizon",
+        "Details": "Communications",
+        "Code": null,
+        "Reference": null
+      },
+      "Discount": null,
+      "Balances": {
+        "AccountsReceivable": { "Outstanding": 0.0, "Overdue": 0.0 },
+        "AccountsPayable": { "Outstanding": 1120.0, "Overdue": 1120.0 }
+      },
+      "Attachments": [],
+      "HasAttachments": false,
+      "ValidationErrors": [],
+      "HasValidationErrors": false,
+      "StatusAttributeString": null
+    },
+    {
+      "updatedDateUTCAsDate": {
+        "offset": {
+          "totalSeconds": 0,
+          "id": "Z",
+          "rules": {
+            "fixedOffset": true,
+            "transitions": [],
+            "transitionRules": []
+          }
+        },
+        "nano": 870000000,
+        "year": 2023,
+        "monthValue": 9,
+        "dayOfMonth": 21,
+        "hour": 2,
+        "minute": 23,
+        "second": 42,
+        "month": "SEPTEMBER",
+        "dayOfWeek": "THURSDAY",
+        "dayOfYear": 264
+      },
+      "ContactID": "b3e08230-2392-42f8-929d-9f120e684529",
+      "MergedToContactID": null,
+      "ContactNumber": null,
+      "AccountNumber": "VEN00002",
+      "ContactStatus": "ACTIVE",
+      "Name": "Amazon US",
+      "FirstName": "Chris",
+      "LastName": "Cains",
+      "CompanyNumber": null,
+      "EmailAddress": "ccains@amazon.com",
+      "ContactPersons": [],
+      "BankAccountDetails": "12340987698703456712",
+      "TaxNumber": null,
+      "AccountsReceivableTaxType": null,
+      "AccountsPayableTaxType": null,
+      "Addresses": [
+        {
+          "AddressType": "POBOX",
+          "AddressLine1": "105 Ashland St",
+          "AddressLine2": null,
+          "AddressLine3": null,
+          "AddressLine4": null,
+          "City": "Malden",
+          "Region": "MA",
+          "PostalCode": "02148",
+          "Country": "USA",
+          "AttentionTo": null
+        },
+        {
+          "AddressType": "STREET",
+          "AddressLine1": "105 Ashland St",
+          "AddressLine2": null,
+          "AddressLine3": null,
+          "AddressLine4": null,
+          "City": "Malden",
+          "Region": "MA",
+          "PostalCode": "02148",
+          "Country": "USA",
+          "AttentionTo": null
+        }
+      ],
+      "Phones": [
+        {
+          "PhoneType": "DDI",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "DEFAULT",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "FAX",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "MOBILE",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        }
+      ],
+      "IsSupplier": true,
+      "IsCustomer": false,
+      "SalesDefaultLineAmountType": null,
+      "PurchasesDefaultLineAmountType": null,
+      "DefaultCurrency": null,
+      "XeroNetworkKey": null,
+      "SalesDefaultAccountCode": null,
+      "PurchasesDefaultAccountCode": null,
+      "SalesTrackingCategories": [],
+      "PurchasesTrackingCategories": [],
+      "TrackingCategoryName": null,
+      "TrackingCategoryOption": null,
+      "PaymentTerms": {
+        "Bills": { "Day": 45, "Type": "DAYSAFTERBILLDATE" },
+        "Sales": null
+      },
+      "UpdatedDateUTC": "/Date(1695263022870+0000)/",
+      "ContactGroups": [],
+      "Website": null,
+      "BrandingTheme": null,
+      "BatchPayments": {
+        "BankAccountNumber": "12340987698703456712",
+        "BankAccountName": "Amazon US",
+        "Details": "Misc",
+        "Code": null,
+        "Reference": null
+      },
+      "Discount": null,
+      "Balances": null,
+      "Attachments": [],
+      "HasAttachments": false,
+      "ValidationErrors": [],
+      "HasValidationErrors": false,
+      "StatusAttributeString": null
+    },
+    {
+      "updatedDateUTCAsDate": {
+        "offset": {
+          "totalSeconds": 0,
+          "id": "Z",
+          "rules": {
+            "fixedOffset": true,
+            "transitions": [],
+            "transitionRules": []
+          }
+        },
+        "nano": 690000000,
+        "year": 2023,
+        "monthValue": 9,
+        "dayOfMonth": 21,
+        "hour": 2,
+        "minute": 26,
+        "second": 38,
+        "month": "SEPTEMBER",
+        "dayOfWeek": "THURSDAY",
+        "dayOfYear": 264
+      },
+      "ContactID": "29a216bb-3be5-4e63-b4e6-b80ef73d5eb4",
+      "MergedToContactID": null,
+      "ContactNumber": null,
+      "AccountNumber": "VEN00003",
+      "ContactStatus": "ACTIVE",
+      "Name": "National Grid",
+      "FirstName": "Antony",
+      "LastName": "Teodoro",
+      "CompanyNumber": null,
+      "EmailAddress": "ateodoro@ngrid.com",
+      "ContactPersons": [],
+      "BankAccountDetails": "10345908790873256901",
+      "TaxNumber": null,
+      "AccountsReceivableTaxType": null,
+      "AccountsPayableTaxType": null,
+      "Addresses": [
+        {
+          "AddressType": "POBOX",
+          "AddressLine1": "75 Burlington Mall Rd",
+          "AddressLine2": null,
+          "AddressLine3": null,
+          "AddressLine4": null,
+          "City": "Burlington",
+          "Region": "MA",
+          "PostalCode": "01803",
+          "Country": "USA",
+          "AttentionTo": null
+        },
+        {
+          "AddressType": "STREET",
+          "AddressLine1": "75 Burlington Mall Rd",
+          "AddressLine2": null,
+          "AddressLine3": null,
+          "AddressLine4": null,
+          "City": "Burlington",
+          "Region": "MA",
+          "PostalCode": "01803",
+          "Country": "USA",
+          "AttentionTo": null
+        }
+      ],
+      "Phones": [
+        {
+          "PhoneType": "DDI",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "DEFAULT",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "FAX",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        },
+        {
+          "PhoneType": "MOBILE",
+          "PhoneNumber": null,
+          "PhoneAreaCode": null,
+          "PhoneCountryCode": null
+        }
+      ],
+      "IsSupplier": true,
+      "IsCustomer": false,
+      "SalesDefaultLineAmountType": null,
+      "PurchasesDefaultLineAmountType": null,
+      "DefaultCurrency": null,
+      "XeroNetworkKey": null,
+      "SalesDefaultAccountCode": null,
+      "PurchasesDefaultAccountCode": null,
+      "SalesTrackingCategories": [],
+      "PurchasesTrackingCategories": [],
+      "TrackingCategoryName": null,
+      "TrackingCategoryOption": null,
+      "PaymentTerms": {
+        "Bills": { "Day": 30, "Type": "DAYSAFTERBILLDATE" },
+        "Sales": null
+      },
+      "UpdatedDateUTC": "/Date(1695263198690+0000)/",
+      "ContactGroups": [],
+      "Website": null,
+      "BrandingTheme": null,
+      "BatchPayments": {
+        "BankAccountNumber": "10345908790873256901",
+        "BankAccountName": "National Grid",
+        "Details": "Electricity & Gas",
+        "Code": null,
+        "Reference": null
+      },
+      "Discount": null,
+      "Balances": {
+        "AccountsReceivable": { "Outstanding": 0.0, "Overdue": 0.0 },
+        "AccountsPayable": { "Outstanding": 598.0, "Overdue": 0.0 }
+      },
+      "Attachments": [],
+      "HasAttachments": false,
+      "ValidationErrors": [],
+      "HasValidationErrors": false,
+      "StatusAttributeString": null
+    }
+  ]
+}

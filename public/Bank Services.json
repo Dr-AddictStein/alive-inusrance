@@ -1,0 +1,12 @@
+[
+  {
+    "bankkId": "Bank1",
+    "bankName": "Banke One",
+    "services": ["Payments", "Loans"]
+  },
+  {
+    "bankkId": "Bank2",
+    "bankName": "Banke Two",
+    "services": ["Payments", "Loans", "Credit"]
+  }
+]
