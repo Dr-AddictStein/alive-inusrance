@@ -17,7 +17,7 @@ const colourOptions = [
   { value: "orange", label: "Orange", color: "#FF8B00" },
 ];
 
-const CreateNewTransaction = () => {
+const LoanTransaction = () => {
   const [activeStep, setActiveStep] = useState(1);
   const [access, setAccess] = useState(false);
 
@@ -647,7 +647,7 @@ const CreateNewTransaction = () => {
 
         {activeStep === 3 && (
           <div className="py-20">
-            <TrStep3 props={sendTo3}/>
+            <TrStep3 props={sendTo3} fromLoan={true}/>
             <div className="flex justify-between items-center gap-5 py-20">
               {activeStep > 1 && (
                 <div className="px-10 flex justify-center items-center gap-2">
@@ -686,4 +686,4 @@ const CreateNewTransaction = () => {
   );
 };
 
-export default CreateNewTransaction;
+export default LoanTransaction;

@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 const TrStep2 = () => {
   const [vendors, setVendors] = useState([]);
   const [invoices, setInvoices] = useState([]);
-  const [invoicesIDs, setInvoiceIDs] = useState([]);
+  const [defaultInvoices, setDefaultInvoices] = useState([]);
 
   const [selectedVendor, setSelectedVendor] = useState("");
   const handleOptionChangeForSelectorsVendor = (event) => {
@@ -47,6 +47,36 @@ const TrStep2 = () => {
 
     fetchInvoices();
   }, []);
+
+  const buildDefaultInvoices = () => {
+    let tempDef = [];
+    for (let i = 0; i < invoices.length; i++) {
+      let vNum;
+      for (let j = 0; j < vendors.length; j++) {
+        if (vendors[j].Name === invoices[i].Contact.Name) {
+          vNum = vendors[j].AccountNumber;
+          break;
+        }
+      }
+      let tempOb = {
+        Number: invoices[i].InvoiceNumber,
+        Date: invoices[i].Date,
+        DueDate: invoices[i].DueDate,
+        VendorName: invoices[i].Contact.Name,
+        VendorNumber: vNum,
+        InvoiceAmount: invoices[i].Total,
+        InvoiceDue: invoices[i].AmountDue,
+        Currency: invoices[i].CurrencyCode,
+      };
+
+      tempDef.push(tempOb);
+    }
+
+    setDefaultInvoices(tempDef);
+  };
+  useEffect(() => {
+    buildDefaultInvoices();
+  }, [invoices]);
 
   const filteredInvoiceIDNums = [];
 
@@ -135,7 +165,7 @@ const TrStep2 = () => {
 
   const handleLineData = (e) => {
     const invoiceNumber = e.target.id;
-  
+
     if (e.target.checked) {
       // Add the invoice line items to lineData if the checkbox is checked
       let tempArr = [];
@@ -160,8 +190,6 @@ const TrStep2 = () => {
         prevLineData.filter((item) => item.invID !== invoiceNumber)
       );
     }
-  
-    console.log("_X_X_", lineData);
   };
 
   return (
@@ -240,6 +268,7 @@ const TrStep2 = () => {
           <button
             onClick={() => {
               setupTable();
+              setLineData([]);
             }}
             className="px-[20px] py-[8px] rounded-sm h-[40px] text-white bg-[#3f84e5]"
           >
@@ -254,6 +283,7 @@ const TrStep2 = () => {
               setInvoiceDex([]);
               settVendorName("");
               settVendorNumber("");
+              setLineData([]);
             }}
             className="px-[20px] py-[8px] rounded-sm h-[40px] text-white bg-[#5D656A]"
           >
@@ -282,33 +312,67 @@ const TrStep2 = () => {
             <th>Action</th>
           </thead>
           <tbody>
-            {invoiceDex.map((inv) => {
-              return (
-                <tr key={inv.InvoiceNumber} className="border-b-2">
-                  <td>
-                    <input
-                      type="checkbox"
-                      id={inv.InvoiceNumber}
-                      className="checkbox"
-                      onChange={handleLineData}
-                    />
-                  </td>
-                  <td className="text-center">{inv.InvoiceNumber}  </td>
-                  <td className="text-center">{formatDate(inv.Date)}</td>
-                  <td className="text-center">{formatDate(inv.DueDate)}</td>
-                  <td className="text-center">{tVendorName}</td>
-                  <td className="text-center">{tVendorNumber}</td>
-                  <td className="text-center">{inv.Total}</td>
-                  <td className="text-center">{inv.AmountDue}</td>
-                  <td className="text-center">{inv.CurrencyCode}</td>
-                  <td>
-                    <button className="h-[28px] py-[4px] px-[6px] border-2 border-blue-500">
-                      Pay
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            {invoiceDex.length === 0 ? (
+              <>
+                {defaultInvoices.map((inv) => {
+                  return (
+                    <tr key={inv.Number} className="border-b-2">
+                      <td>
+                        <input
+                          type="checkbox"
+                          id={inv.Number}
+                          className="checkbox"
+                          onChange={handleLineData}
+                        />
+                      </td>
+                      <td className="text-center">{inv.Number} </td>
+                      <td className="text-center">{formatDate(inv.Date)}</td>
+                      <td className="text-center">{formatDate(inv.DueDate)}</td>
+                      <td className="text-center">{inv.VendorName}</td>
+                      <td className="text-center">{inv.VendorNumber}</td>
+                      <td className="text-center">{inv.InvoiceAmount}</td>
+                      <td className="text-center">{inv.InvoiceDue}</td>
+                      <td className="text-center">{inv.CurrencyCode}</td>
+                      <td>
+                        <button className="h-[28px] py-[4px] px-[6px] border-2 border-blue-500">
+                          Pay
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {invoiceDex.map((inv) => {
+                  return (
+                    <tr key={inv.InvoiceNumber} className="border-b-2">
+                      <td>
+                        <input
+                          type="checkbox"
+                          id={inv.InvoiceNumber}
+                          className="checkbox"
+                          onChange={handleLineData}
+                        />
+                      </td>
+                      <td className="text-center">{inv.InvoiceNumber} </td>
+                      <td className="text-center">{formatDate(inv.Date)}</td>
+                      <td className="text-center">{formatDate(inv.DueDate)}</td>
+                      <td className="text-center">{tVendorName}</td>
+                      <td className="text-center">{tVendorNumber}</td>
+                      <td className="text-center">{inv.Total}</td>
+                      <td className="text-center">{inv.AmountDue}</td>
+                      <td className="text-center">{inv.CurrencyCode}</td>
+                      <td>
+                        <button className="h-[28px] py-[4px] px-[6px] border-2 border-blue-500">
+                          Pay
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </>
+            )}
           </tbody>
         </table>
       </div>

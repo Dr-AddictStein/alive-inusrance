@@ -71,7 +71,7 @@ const Trstep1 = () => {
     : [];
   return (
     <div>
-      <div className="mt-6 mb-5 relative">
+      <div className="mb-5 relative">
         <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
           Select ERP Application
         </label>
