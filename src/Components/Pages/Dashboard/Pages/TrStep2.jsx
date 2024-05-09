@@ -131,6 +131,39 @@ const TrStep2 = () => {
     return `${day} ${month} ${year}`;
   }
 
+  const [lineData, setLineData] = useState([]);
+
+  const handleLineData = (e) => {
+    const invoiceNumber = e.target.id;
+  
+    if (e.target.checked) {
+      // Add the invoice line items to lineData if the checkbox is checked
+      let tempArr = [];
+      for (let i = 0; i < invoices.length; i++) {
+        if (invoices[i].InvoiceNumber === invoiceNumber) {
+          for (let j = 0; j < invoices[i].LineItems.length; j++) {
+            tempArr.push({
+              invID: invoices[i].InvoiceNumber,
+              it: invoices[i].LineItems[j].Item,
+              desc: invoices[i].LineItems[j].ItemDescription,
+              quan: invoices[i].LineItems[j].Quantity,
+              uprice: invoices[i].LineItems[j].UnitPrice,
+              amount: invoices[i].LineItems[j].Amount,
+            });
+          }
+        }
+      }
+      setLineData((prevLineData) => [...prevLineData, ...tempArr]);
+    } else {
+      // Remove the entire invoice data from lineData if the checkbox is unchecked
+      setLineData((prevLineData) =>
+        prevLineData.filter((item) => item.invID !== invoiceNumber)
+      );
+    }
+  
+    console.log("_X_X_", lineData);
+  };
+
   return (
     <div className="mx-auto mt-20">
       <div className="flex gap-10 justify-around">
@@ -237,25 +270,30 @@ const TrStep2 = () => {
       <div className="overflow-x-auto mt-8 text-[#1D6FFF]">
         <table className="table w-full">
           <thead>
-              <th></th>
-              <th>Number</th>
-              <th>Date</th>
-              <th>Due Date</th>
-              <th>Vendor Name</th>
-              <th>Vendor Number</th>
-              <th>Invoice Amount</th>
-              <th>Amount Due</th>
-              <th>Currency</th>
-              <th>Action</th>
+            <th></th>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Due Date</th>
+            <th>Vendor Name</th>
+            <th>Vendor Number</th>
+            <th>Invoice Amount</th>
+            <th>Amount Due</th>
+            <th>Currency</th>
+            <th>Action</th>
           </thead>
           <tbody>
             {invoiceDex.map((inv) => {
               return (
-                <tr key={inv.InvoiceNumber}>
+                <tr key={inv.InvoiceNumber} className="border-b-2">
                   <td>
-                    <input type="checkbox" className="checkbox" />
+                    <input
+                      type="checkbox"
+                      id={inv.InvoiceNumber}
+                      className="checkbox"
+                      onChange={handleLineData}
+                    />
                   </td>
-                  <td className="text-center">{inv.InvoiceNumber}</td>
+                  <td className="text-center">{inv.InvoiceNumber}  </td>
                   <td className="text-center">{formatDate(inv.Date)}</td>
                   <td className="text-center">{formatDate(inv.DueDate)}</td>
                   <td className="text-center">{tVendorName}</td>
@@ -268,6 +306,36 @@ const TrStep2 = () => {
                       Pay
                     </button>
                   </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 className="text-2xl text-blue-500 mt-16 mb-4">Invoice Lines</h3>
+      <hr />
+
+      <div className="overflow-x-auto mt-8 text-[#1D6FFF]">
+        <table className="table w-full">
+          <thead>
+            <th>Number</th>
+            <th>Item</th>
+            <th>Item Description</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+          </thead>
+          <tbody>
+            {lineData.map((ln) => {
+              return (
+                <tr key={ln} className="border-b-2">
+                  <td className="text-center">{ln.invID}</td>
+                  <td className="text-center">{ln.it}</td>
+                  <td className="text-center">{ln.desc}</td>
+                  <td className="text-center">{ln.quan}</td>
+                  <td className="text-center">{ln.uprice}</td>
+                  <td className="text-center">{ln.amount}</td>
                 </tr>
               );
             })}
