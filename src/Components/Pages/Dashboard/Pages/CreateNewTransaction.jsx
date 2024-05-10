@@ -402,7 +402,10 @@ const CreateNewTransaction = () => {
                     options={options}
                     isMulti
                     styles={{
-                      height: "full",
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        height:state+"55px"
+                      }),
                     }}
                   />
                 </div>
@@ -419,7 +422,7 @@ const CreateNewTransaction = () => {
                     onChange={(e) => {
                       setDateFrom(e.target.value);
                     }}
-                  />
+                    />
                 </div>
               </div>
               <div className="flex gap-10 justify-between">
@@ -435,6 +438,9 @@ const CreateNewTransaction = () => {
                     value={dateTo}
                     onChange={(e) => {
                       setDateTo(e.target.value);
+                    }}
+                    style={{
+                      width:"374px"
                     }}
                   />
                 </div>

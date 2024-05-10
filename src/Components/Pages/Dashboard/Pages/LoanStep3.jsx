@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const TrStep3 = (props, fromLoan) => {
+const LoanStep3 = (props, fromLoan) => {
   const [lineData, setLineData] = useState(props.props);
   const [paymentTypes, setPaymentTypes] = useState([]);
   const [bankAccounts, setBankAccounts] = useState([]);
@@ -32,20 +32,16 @@ const TrStep3 = (props, fromLoan) => {
 
         const data = await response.json();
 
-        const keep=data.Accounts;
+        const keep = data.Accounts;
 
         setBankAccounts(keep);
-        
       } catch (error) {
         console.log("Could Not fetch Payment Types", error);
       }
     };
-    
+
     fetchBankAccounts();
-
   }, []);
-
-
 
   useEffect(() => {
     const setupTable = () => {
@@ -59,11 +55,12 @@ const TrStep3 = (props, fromLoan) => {
           InvoiceAmount: lineData[i].InvoiceAmount,
           Currency: lineData[i].Currency,
           PaymetType: paymentTypes[0],
-          AccountName: '',
-          AccountBalance: ''
+          AccountName: "",
+          AccountBalance: "",
+          BankAccountNumber: "",
         };
 
-        if(bankAccounts.length>0){
+        if (bankAccounts.length > 0) {
           temp = {
             Number: lineData[i].Number,
             Date: lineData[i].Date,
@@ -73,7 +70,8 @@ const TrStep3 = (props, fromLoan) => {
             Currency: lineData[i].Currency,
             PaymetType: paymentTypes[0],
             AccountName: bankAccounts[0].Name,
-            AccountBalance: bankAccounts[0].Balance
+            AccountBalance: bankAccounts[0].Balance,
+            BankAccountNumber: bankAccounts[0].BankAccountNumber,
           };
         }
 
@@ -84,7 +82,7 @@ const TrStep3 = (props, fromLoan) => {
     };
 
     setupTable();
-  }, [lineData,paymentTypes,bankAccounts]);
+  }, [lineData, paymentTypes, bankAccounts]);
 
   function formatDate(dateString) {
     // Extract the timestamp from the string
@@ -118,18 +116,21 @@ const TrStep3 = (props, fromLoan) => {
     return `${day} ${month} ${year}`;
   }
 
-  const handleDropdownChange=(e,ln)=>{
-    const selectedAccountName = e.target.value;
-    const updatedRowData = rowData.map(row => {
+  const handleDropdownChange = (e, ln) => {
+    const selectedBankAccountNumber = e.target.value;
+    const selectedAccount = bankAccounts.find(
+      (account) => account.BankAccountNumber === selectedBankAccountNumber
+    );
+    const updatedRowData = rowData.map((row) => {
       if (row.Number === ln.Number) {
         // Update AccountName and AccountBalance
-        row.AccountName = selectedAccountName;
-        row.AccountBalance = bankAccounts.find(account => account.Name === selectedAccountName)?.Balance || 0;
+        row.AccountName = selectedAccount?.AccountName || "";
+        row.AccountBalance = selectedAccount?.Balance || 0;
       }
       return row;
     });
     setRowData(updatedRowData);
-  }
+  };
 
   return (
     <div>
@@ -139,11 +140,24 @@ const TrStep3 = (props, fromLoan) => {
           <th className="text-blue-600">Date</th>
           <th className="text-blue-600">Due Date </th>
           <th className="text-blue-600">Vendor Name</th>
-          <th className="text-blue-600">Invoice Amount</th>
+          <th className="text-blue-600">
+            Payment <br /> Amount
+          </th>
           <th>Currency</th>
-          <th>Payment Type</th>
-          <th>Account Name</th>
-          <th>Account Balance</th>
+          <th>Start Date</th>
+          <th>Account</th>
+          <th>
+            Liability
+            <br /> Account
+          </th>
+          <th>
+            Interest
+            <br /> Expense
+          </th>
+          <th>
+            Bank Charge
+            <br /> Account
+          </th>
         </thead>
         <tbody className="text-blue-600">
           {rowData.map((ln) => {
@@ -155,42 +169,27 @@ const TrStep3 = (props, fromLoan) => {
                 <td className="text-center">{ln.VendorName}</td>
                 <td className="text-center">{ln.InvoiceAmount}</td>
                 <td className="text-center">{ln.Currency}</td>
+                <td className="text-center">sds</td>
                 <td className="text-center">
                   <select
                     className=""
-                    onChange={(e) => {
-                      for (let i = 0; i < rowData.length; i++) {
-                        if (rowData[i].Number === ln.Number) {
-                          rowData[i].PaymetType = e.target.value;
-                          break;
-                        }
-                      }
-                      console.log("ADDDDD@", ln.PaymetType);
-                    }}
+                    value={ln.AccountName}
+                    id="ssssss"
+                    onChange={(e) => handleDropdownChange(e, ln)}
                   >
-                    {paymentTypes.map((pm) => {
-                      return (
-                        <option key={pm} value={`${pm}`}>
-                          {pm}
-                        </option>
-                      );
-                    })}
+                    {bankAccounts.map((pm) => (
+                      <option
+                        key={pm.BankAccountNumber}
+                        value={pm.BankAccountNumber}
+                        onClick={()=>{
+                          document.getElementById('ssssss').value
+                        }}
+                      >
+                        {pm.BankAccountNumber}
+                      </option>
+                    ))}
                   </select>
                 </td>
-                <td className="text-center">
-              <select
-                className=""
-                value={ln.AccountName}
-                onChange={(e) => handleDropdownChange(e, ln)}
-              >
-                {bankAccounts.map(pm => (
-                  <option key={pm.Name} value={pm.Name}>
-                    {pm.Name}
-                  </option>
-                ))}
-              </select>
-            </td>
-            <td className="text-center">{ln.AccountBalance}</td>
               </tr>
             );
           })}
@@ -200,4 +199,4 @@ const TrStep3 = (props, fromLoan) => {
   );
 };
 
-export default TrStep3;
+export default LoanStep3;
