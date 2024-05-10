@@ -33,38 +33,46 @@ const CreateNewTransaction = () => {
 
   const isLastStep = activeStep === 3;
 
-  const [sendTo3,setSendTo3]=useState([]);
+  const [sendTo3, setSendTo3] = useState([]);
 
   const handleButtonClick = () => {
     if (isLastStep) {
       toast.success("Form submitted successfully");
       setActiveStep(4);
     } else {
-      if(activeStep===2){
-        let temp3Dat=[];
-        let taken=[];
-        for(let i=0;i<lineData.length;i++){
-          if(taken.includes(lineData[i].invID)){
+      if (activeStep === 2) {
+        let temp3Dat = [];
+        let taken = [];
+        for (let i = 0; i < lineData.length; i++) {
+          if (taken.includes(lineData[i].invID)) {
             continue;
           }
-          for(let j=0;j<invoices.length;j++){
+          for (let j = 0; j < invoices.length; j++) {
             let temp3;
-            if(lineData[i].invID===invoices[j].InvoiceNumber){
+            if (lineData[i].invID === invoices[j].InvoiceNumber) {
               taken.push(lineData[i].invID);
-              temp3={
-                Number:lineData[i].invID,
-                Date:invoices[j].Date,
-                DueDate:invoices[j].DueDate,
-                VendorName:invoices[j].Contact.Name,
-                InvoiceAmount:invoices[j].Total,
-                Currency:invoices[j].CurrencyCode
-              }
+              temp3 = {
+                Number: lineData[i].invID,
+                Date: invoices[j].Date,
+                DueDate: invoices[j].DueDate,
+                VendorName: invoices[j].Contact.Name,
+                InvoiceAmount: invoices[j].Total,
+                Currency: invoices[j].CurrencyCode,
+              };
               temp3Dat.push(temp3);
               break;
             }
           }
         }
-        setSendTo3(temp3Dat)
+        setSendTo3(temp3Dat);
+        setSelectedVendor("");
+        setDateFrom("");
+        setDateTo("");
+        setSelectedMultiValue([]);
+        setInvoiceDex([]);
+        settVendorName("");
+        settVendorNumber("");
+        setLineData([]);
       }
       nextStep();
     }
@@ -73,7 +81,6 @@ const CreateNewTransaction = () => {
   // Step 2 JS
   const [vendors, setVendors] = useState([]);
   const [invoices, setInvoices] = useState([]);
-  const [defaultInvoices, setDefaultInvoices] = useState([]);
 
   const [selectedVendor, setSelectedVendor] = useState("");
   const handleOptionChangeForSelectorsVendor = (event) => {
@@ -97,6 +104,8 @@ const CreateNewTransaction = () => {
     fetchVendors();
   }, []);
 
+  const [invoicesLoaded, setInvoicesLoaded] = useState(false);
+
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
@@ -113,37 +122,7 @@ const CreateNewTransaction = () => {
     };
 
     fetchInvoices();
-  }, []);
-
-  const buildDefaultInvoices = () => {
-    let tempDef = [];
-    for (let i = 0; i < invoices.length; i++) {
-      let vNum;
-      for (let j = 0; j < vendors.length; j++) {
-        if (vendors[j].Name === invoices[i].Contact.Name) {
-          vNum = vendors[j].AccountNumber;
-          break;
-        }
-      }
-      let tempOb = {
-        Number: invoices[i].InvoiceNumber,
-        Date: invoices[i].Date,
-        DueDate: invoices[i].DueDate,
-        VendorName: invoices[i].Contact.Name,
-        VendorNumber: vNum,
-        InvoiceAmount: invoices[i].Total,
-        InvoiceDue: invoices[i].AmountDue,
-        Currency: invoices[i].CurrencyCode,
-      };
-
-      tempDef.push(tempOb);
-    }
-
-    setDefaultInvoices(tempDef);
-  };
-  useEffect(() => {
-    buildDefaultInvoices();
-  }, [invoices]);
+  }, [invoicesLoaded]);
 
   const filteredInvoiceIDNums = [];
 
@@ -171,6 +150,9 @@ const CreateNewTransaction = () => {
   const [tVendorNumber, settVendorNumber] = useState();
   const [invoiceDex, setInvoiceDex] = useState([]);
   const setupTable = () => {
+    if (invoicesLoaded === false) {
+      setInvoicesLoaded(true);
+    }
     for (let i = 0; i < vendors.length; i++) {
       if (vendors[i].Name === selectedVendor) {
         settVendorName(selectedVendor);
@@ -183,7 +165,18 @@ const CreateNewTransaction = () => {
     for (let i = 0; i < selectedMultiValue.length; i++) {
       for (let j = 0; j < invoices.length; j++) {
         if (selectedMultiValue[i].value === invoices[j].InvoiceNumber) {
-          dex.push(invoices[j]);
+          const dateInputFrom = new Date(dateFrom);
+          const dateInputTo = new Date(dateTo);
+          const jsonDateString = invoices[j].Date;
+          const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
+          const jsonDate=new Date(jsonDateMilliseconds)
+
+
+          console.log("Date Check: ",dateInputFrom,dateInputTo,jsonDate)
+
+          if(jsonDate>=dateInputFrom && jsonDate<=dateInputTo){
+            dex.push(invoices[j]);
+          }
         }
       }
     }
@@ -261,9 +254,7 @@ const CreateNewTransaction = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto pt-10 rounded-lg">
-      <h1 className="font-medium text-3xl mb-2">
-        Create New Transaction
-      </h1>
+      <h1 className="font-medium text-3xl mb-2">Create New Transaction</h1>
       <hr />
       <div className="py-10">
         <h2 className="sr-only">Steps</h2>
@@ -477,66 +468,27 @@ const CreateNewTransaction = () => {
 
               {/* table starts from here */}
 
-              <h3 className="text-2xl text-blue-500 mt-16 mb-4">Invoices</h3>
-              <hr />
+              {invoiceDex.length > 0 && (
+                <>
+                  <h3 className="text-2xl text-blue-500 mt-16 mb-4">
+                    Invoices
+                  </h3>
+                  <hr />
 
-              <div className="overflow-x-auto mt-8 text-[#1D6FFF]">
-                <table className="table w-full">
-                  <thead>
-                    <th></th>
-                    <th>Number</th>
-                    <th>Date</th>
-                    <th>Due Date</th>
-                    <th>Vendor Name</th>
-                    <th>Vendor Number</th>
-                    <th>Invoice Amount</th>
-                    <th>Amount Due</th>
-                    <th>Currency</th>
-                    <th>Action</th>
-                  </thead>
-                  <tbody>
-                    {invoiceDex.length === 0 ? (
-                      <>
-                        {defaultInvoices.map((inv) => {
-                          return (
-                            <tr key={inv.Number} className="border-b-2">
-                              <td>
-                                <input
-                                  type="checkbox"
-                                  id={inv.Number}
-                                  className="checkbox"
-                                  onChange={handleLineData}
-                                />
-                              </td>
-                              <td className="text-center">{inv.Number} </td>
-                              <td className="text-center">
-                                {formatDate(inv.Date)}
-                              </td>
-                              <td className="text-center">
-                                {formatDate(inv.DueDate)}
-                              </td>
-                              <td className="text-center">{inv.VendorName}</td>
-                              <td className="text-center">
-                                {inv.VendorNumber}
-                              </td>
-                              <td className="text-center">
-                                {inv.InvoiceAmount}
-                              </td>
-                              <td className="text-center">{inv.InvoiceDue}</td>
-                              <td className="text-center">
-                                {inv.CurrencyCode}
-                              </td>
-                              <td>
-                                <button className="h-[28px] py-[4px] px-[6px] border-2 border-blue-500">
-                                  Pay
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </>
-                    ) : (
-                      <>
+                  <div className="overflow-x-auto mt-8 ">
+                    <table className="table w-full">
+                      <thead>
+                        <th></th>
+                        <th>Number</th>
+                        <th>Date</th>
+                        <th>Due Date</th>
+                        <th>Vendor Name</th>
+                        <th>Vendor Number</th>
+                        <th>Invoice Amount</th>
+                        <th>Amount Due</th>
+                        <th>Currency</th>
+                      </thead>
+                      <tbody>
                         {invoiceDex.map((inv) => {
                           return (
                             <tr key={inv.InvoiceNumber} className="border-b-2">
@@ -564,51 +516,50 @@ const CreateNewTransaction = () => {
                               <td className="text-center">
                                 {inv.CurrencyCode}
                               </td>
-                              <td>
-                                <button className="h-[28px] py-[4px] px-[6px] border-2 border-blue-500">
-                                  Pay
-                                </button>
-                              </td>
                             </tr>
                           );
                         })}
-                      </>
-                    )}
-                  </tbody>
-                </table>
-              </div>
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
 
-              <h3 className="text-2xl text-blue-500 mt-16 mb-4">
-                Invoice Lines
-              </h3>
-              <hr />
+              {lineData.length > 0 && (
+                <>
+                  <h3 className="text-2xl text-blue-500 mt-16 mb-4">
+                    Invoice Lines
+                  </h3>
+                  <hr />
 
-              <div className="overflow-x-auto mt-8 text-[#1D6FFF]">
-                <table className="table w-full">
-                  <thead>
-                    <th>Number</th>
-                    <th>Item</th>
-                    <th>Item Description</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>Amount</th>
-                  </thead>
-                  <tbody>
-                    {lineData.map((ln) => {
-                      return (
-                        <tr key={ln} className="border-b-2">
-                          <td className="text-center">{ln.invID}</td>
-                          <td className="text-center">{ln.it}</td>
-                          <td className="text-center">{ln.desc}</td>
-                          <td className="text-center">{ln.quan}</td>
-                          <td className="text-center">{ln.uprice}</td>
-                          <td className="text-center">{ln.amount}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+                  <div className="overflow-x-auto mt-8 ">
+                    <table className="table w-full">
+                      <thead>
+                        <th>Number</th>
+                        <th>Item</th>
+                        <th>Item Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                      </thead>
+                      <tbody>
+                        {lineData.map((ln) => {
+                          return (
+                            <tr key={ln} className="border-b-2">
+                              <td className="text-center">{ln.invID}</td>
+                              <td className="text-center">{ln.it}</td>
+                              <td className="text-center">{ln.desc}</td>
+                              <td className="text-center">{ln.quan}</td>
+                              <td className="text-center">{ln.uprice}</td>
+                              <td className="text-center">{ln.amount}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
             </div>
             <div className="flex justify-between items-center gap-5 py-10">
               {activeStep > 1 && (
@@ -647,7 +598,7 @@ const CreateNewTransaction = () => {
 
         {activeStep === 3 && (
           <div className="py-20">
-            <TrStep3 props={sendTo3}/>
+            <TrStep3 props={sendTo3} />
             <div className="flex justify-between items-center gap-5 py-20">
               {activeStep > 1 && (
                 <div className="px-10 flex justify-center items-center gap-2">
@@ -680,7 +631,6 @@ const CreateNewTransaction = () => {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
