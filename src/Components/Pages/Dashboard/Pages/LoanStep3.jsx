@@ -136,11 +136,11 @@ const LoanStep3 = (props, fromLoan) => {
     <div>
       <table className="table w-full">
         <thead>
-          <th className="text-blue-600">Number</th>
-          <th className="text-blue-600">Date</th>
-          <th className="text-blue-600">Due Date </th>
-          <th className="text-blue-600">Vendor Name</th>
-          <th className="text-blue-600">
+          <th className="">Number</th>
+          <th className="">Date</th>
+          <th className="">Due Date </th>
+          <th className="">Vendor Name</th>
+          <th className="">
             Payment <br /> Amount
           </th>
           <th>Currency</th>
@@ -159,7 +159,7 @@ const LoanStep3 = (props, fromLoan) => {
             <br /> Account
           </th>
         </thead>
-        <tbody className="text-blue-600">
+        <tbody className="">
           {rowData.map((ln) => {
             return (
               <tr key={ln} className="border-b-2 py-6">
@@ -173,19 +173,11 @@ const LoanStep3 = (props, fromLoan) => {
                 <td className="text-center">
                   <select
                     className=""
-                    value={ln.AccountName}
-                    id="ssssss"
                     onChange={(e) => handleDropdownChange(e, ln)}
                   >
                     {bankAccounts.map((pm) => (
-                      <option
-                        key={pm.BankAccountNumber}
-                        value={pm.BankAccountNumber}
-                        onClick={()=>{
-                          document.getElementById('ssssss').value
-                        }}
-                      >
-                        {pm.BankAccountNumber}
+                      <option key={pm.Name} value={pm.Name}>
+                        {pm.Name}
                       </option>
                     ))}
                   </select>

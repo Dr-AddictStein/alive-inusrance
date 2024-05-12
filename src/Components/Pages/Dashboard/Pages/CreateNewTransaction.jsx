@@ -23,6 +23,16 @@ const CreateNewTransaction = () => {
 
   const previousStep = () => {
     setActiveStep(activeStep - 1);
+    if (activeStep === 2) {
+      setSelectedVendor("");
+      setDateFrom("");
+      setDateTo("");
+      setSelectedMultiValue([]);
+      setInvoiceDex([]);
+      settVendorName("");
+      settVendorNumber("");
+      setLineData([]);
+    }
     setAccess(false);
   };
 
@@ -65,13 +75,13 @@ const CreateNewTransaction = () => {
           }
         }
         setSendTo3(temp3Dat);
-        setSelectedVendor("");
-        setDateFrom("");
-        setDateTo("");
-        setSelectedMultiValue([]);
-        setInvoiceDex([]);
-        settVendorName("");
-        settVendorNumber("");
+        // setSelectedVendor("");
+        // setDateFrom("");
+        // setDateTo("");
+        // setSelectedMultiValue([]);
+        // setInvoiceDex([]);
+        // settVendorName("");
+        // settVendorNumber("");
         setLineData([]);
       }
       nextStep();
@@ -169,12 +179,11 @@ const CreateNewTransaction = () => {
           const dateInputTo = new Date(dateTo);
           const jsonDateString = invoices[j].Date;
           const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
-          const jsonDate=new Date(jsonDateMilliseconds)
+          const jsonDate = new Date(jsonDateMilliseconds);
 
+          console.log("Date Check: ", dateInputFrom, dateInputTo, jsonDate);
 
-          console.log("Date Check: ",dateInputFrom,dateInputTo,jsonDate)
-
-          if(jsonDate>=dateInputFrom && jsonDate<=dateInputTo){
+          if (jsonDate >= dateInputFrom && jsonDate <= dateInputTo) {
             dex.push(invoices[j]);
           }
         }
@@ -261,7 +270,7 @@ const CreateNewTransaction = () => {
 
         <div className="after:mt-4 after:block after:h-1 after:w-full after:rounded-lg after:bg-gray-200">
           <ol className="flex justify-between text-sm font-medium text-gray-500">
-            <li className="relative flex justify-between text-blue-600">
+            <li className="relative flex justify-between ">
               <span
                 className={`absolute -bottom-[1.75rem] start-0 border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${
                   activeStep === 1 ? "bg-[#5D656A] text-white" : "bg-white"
@@ -276,7 +285,7 @@ const CreateNewTransaction = () => {
 
               <span
                 className={`hidden sm:block  text-sm -bottom-[3.75rem] -left-0 text-center ${
-                  activeStep === 1 ? "text-blue-600 font-semibold" : ""
+                  activeStep === 1 ? " font-semibold" : ""
                 }`}
               >
                 {" "}
@@ -284,7 +293,7 @@ const CreateNewTransaction = () => {
               </span>
             </li>
 
-            <li className="relative flex justify-center text-blue-600">
+            <li className="relative flex justify-center ">
               <span
                 className={`absolute -bottom-[1.75rem] left-16 -ml-10  border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${
                   activeStep === 2 ? "bg-[#5D656A] text-white" : "bg-white"
@@ -299,14 +308,14 @@ const CreateNewTransaction = () => {
 
               <span
                 className={`hidden sm:block  right-16 text-sm -bottom-[3.75rem] ${
-                  activeStep === 2 ? "text-blue-600 font-semibold" : ""
+                  activeStep === 2 ? "font-semibold" : ""
                 }`}
               >
                 Select Bills{" "}
               </span>
             </li>
 
-            <li className="relative flex justify-center text-blue-600">
+            <li className="relative flex justify-center ">
               <span
                 className={`absolute left-10 -bottom-[1.75rem] ml-16 border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${
                   activeStep === 3 ? "bg-[#5D656A] text-white" : "bg-white"
@@ -321,7 +330,7 @@ const CreateNewTransaction = () => {
 
               <span
                 className={`hidden sm:block  text-sm -bottom-[3.75rem] text-center -right-3 ${
-                  activeStep === 3 ? "text-blue-600 font-semibold" : ""
+                  activeStep === 3 ? " font-semibold" : ""
                 }`}
               >
                 {" "}
@@ -376,7 +385,7 @@ const CreateNewTransaction = () => {
                   <select
                     id="erpSelect"
                     name="erpSelect"
-                    className="mt-1 text-blue-400 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+                    className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
                     value={selectedVendor}
                     onChange={handleOptionChangeForSelectorsVendor}
                   >
@@ -404,7 +413,7 @@ const CreateNewTransaction = () => {
                     styles={{
                       control: (baseStyles, state) => ({
                         ...baseStyles,
-                        height:state+"55px"
+                        height: selectedMultiValue.length < 3 ? "55px" : "",
                       }),
                     }}
                   />
@@ -422,7 +431,7 @@ const CreateNewTransaction = () => {
                     onChange={(e) => {
                       setDateFrom(e.target.value);
                     }}
-                    />
+                  />
                 </div>
               </div>
               <div className="flex gap-10 justify-between">
@@ -440,7 +449,7 @@ const CreateNewTransaction = () => {
                       setDateTo(e.target.value);
                     }}
                     style={{
-                      width:"374px"
+                      width: "374px",
                     }}
                   />
                 </div>
@@ -476,9 +485,7 @@ const CreateNewTransaction = () => {
 
               {invoiceDex.length > 0 && (
                 <>
-                  <h3 className="text-2xl text-blue-500 mt-16 mb-4">
-                    Invoices
-                  </h3>
+                  <h3 className="text-2xl  mt-16 mb-4">Invoices</h3>
                   <hr />
 
                   <div className="overflow-x-auto mt-8 ">
@@ -533,9 +540,7 @@ const CreateNewTransaction = () => {
 
               {lineData.length > 0 && (
                 <>
-                  <h3 className="text-2xl text-blue-500 mt-16 mb-4">
-                    Invoice Lines
-                  </h3>
+                  <h3 className="text-2xl  mt-16 mb-4">Invoice Lines</h3>
                   <hr />
 
                   <div className="overflow-x-auto mt-8 ">
