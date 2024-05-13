@@ -24,6 +24,16 @@ const LoanTransaction = () => {
 
   const previousStep = () => {
     setActiveStep(activeStep - 1);
+    if (activeStep === 2) {
+      setSelectedVendor("");
+      setDateFrom("");
+      setDateTo("");
+      setSelectedMultiValue([]);
+      setInvoiceDex([]);
+      settVendorName("");
+      settVendorNumber("");
+      setLineData([]);
+    }
     setAccess(false);
   };
 
@@ -66,13 +76,13 @@ const LoanTransaction = () => {
           }
         }
         setSendTo3(temp3Dat);
-        setSelectedVendor("");
-        setDateFrom("");
-        setDateTo("");
-        setSelectedMultiValue([]);
-        setInvoiceDex([]);
-        settVendorName("");
-        settVendorNumber("");
+        // setSelectedVendor("");
+        // setDateFrom("");
+        // setDateTo("");
+        // setSelectedMultiValue([]);
+        // setInvoiceDex([]);
+        // settVendorName("");
+        // settVendorNumber("");
         setLineData([]);
       }
       nextStep();
@@ -162,25 +172,69 @@ const LoanTransaction = () => {
       }
     }
 
+    // if(selectedVendor===""){
+
+    // }
+
     let dex = [];
-    for (let i = 0; i < selectedMultiValue.length; i++) {
+
+    if (selectedVendor === "") {
       for (let j = 0; j < invoices.length; j++) {
-        if (selectedMultiValue[i].value === invoices[j].InvoiceNumber) {
-          const dateInputFrom = new Date(dateFrom);
-          const dateInputTo = new Date(dateTo);
-          const jsonDateString = invoices[j].Date;
-          const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
-          const jsonDate=new Date(jsonDateMilliseconds)
-
-
-          console.log("Date Check: ",dateInputFrom,dateInputTo,jsonDate)
-
-          if(jsonDate>=dateInputFrom && jsonDate<=dateInputTo){
-            dex.push(invoices[j]);
+        let toPush = invoices[j];
+        for (let k = 0; k < vendors.length; k++) {
+          if (vendors[k].Name === invoices[j].Contact.Name) {
+            toPush["vendNum"] = vendors[k].AccountNumber;
+            break;
+          }
+        }
+        dex.push(toPush);
+      }
+    }
+    else {
+      if(selectedMultiValue.length===0){
+        for (let j = 0; j < invoices.length; j++) {
+          let toPush = invoices[j];
+          if(invoices[j].Contact.Name===selectedVendor){
+            for (let k = 0; k < vendors.length; k++) {
+              if (selectedVendor === invoices[j].Contact.Name) {
+                toPush["vendNum"] = vendors[k].AccountNumber;
+                break;
+              }
+            }
+            dex.push(toPush);
           }
         }
       }
+      else{
+        
+        for (let i = 0; i < selectedMultiValue.length; i++) {
+          for (let j = 0; j < invoices.length; j++) {
+            if (selectedMultiValue[i].value === invoices[j].InvoiceNumber) {
+              const dateInputFrom = new Date(dateFrom);
+              const dateInputTo = new Date(dateTo);
+              const jsonDateString = invoices[j].Date;
+              const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
+              const jsonDate = new Date(jsonDateMilliseconds);
+    
+              console.log("Date Check: ", dateInputFrom, dateInputTo, jsonDate);
+    
+              if (jsonDate >= dateInputFrom && jsonDate <= dateInputTo) {
+                let toPush = invoices[j];
+                for (let k = 0; k < vendors.length; k++) {
+                  if (vendors[k].Name === invoices[j].Contact.Name) {
+                    toPush["vendNum"] = vendors[k].AccountNumber;
+                    break;
+                  }
+                }
+                dex.push(toPush);
+              }
+            }
+          }
+        }
+      }
+      console.log("sss")
     }
+
 
     setInvoiceDex(dex);
   };
@@ -188,6 +242,7 @@ const LoanTransaction = () => {
   useEffect(() => {
     console.log("got 1", tVendorName, tVendorNumber);
     console.log("got tab", invoiceDex);
+    console.log("HerXOXO", invoiceDex);
   }, [invoiceDex, tVendorName, tVendorNumber]);
 
   function formatDate(dateString) {
@@ -300,7 +355,7 @@ const LoanTransaction = () => {
 
               <span
                 className={`hidden sm:block  right-16 text-sm -bottom-[3.75rem] ${
-                  activeStep === 2 ? " font-semibold" : ""
+                  activeStep === 2 ? "font-semibold" : ""
                 }`}
               >
                 Select Bills{" "}
@@ -405,7 +460,7 @@ const LoanTransaction = () => {
                     styles={{
                       control: (baseStyles, state) => ({
                         ...baseStyles,
-                        height:(selectedMultiValue.length<3)?"55px":""
+                        height: selectedMultiValue.length < 3 ? "55px" : "",
                       }),
                     }}
                   />
@@ -423,7 +478,7 @@ const LoanTransaction = () => {
                     onChange={(e) => {
                       setDateFrom(e.target.value);
                     }}
-                    />
+                  />
                 </div>
               </div>
               <div className="flex gap-10 justify-between">
@@ -441,7 +496,7 @@ const LoanTransaction = () => {
                       setDateTo(e.target.value);
                     }}
                     style={{
-                      width:"374px"
+                      width: "374px",
                     }}
                   />
                 </div>
@@ -477,9 +532,7 @@ const LoanTransaction = () => {
 
               {invoiceDex.length > 0 && (
                 <>
-                  <h3 className="text-2xl  mt-16 mb-4">
-                    Invoices
-                  </h3>
+                  <h3 className="text-2xl  mt-16 mb-4">Invoices</h3>
                   <hr />
 
                   <div className="overflow-x-auto mt-8 ">
@@ -516,8 +569,10 @@ const LoanTransaction = () => {
                               <td className="text-center">
                                 {formatDate(inv.DueDate)}
                               </td>
-                              <td className="text-center">{tVendorName}</td>
-                              <td className="text-center">{tVendorNumber}</td>
+                              <td className="text-center">
+                                {inv.Contact.Name}
+                              </td>
+                              <td className="text-center">{inv.vendNum}</td>
                               <td className="text-center">{inv.Total}</td>
                               <td className="text-center">{inv.AmountDue}</td>
                               <td className="text-center">
@@ -534,9 +589,7 @@ const LoanTransaction = () => {
 
               {lineData.length > 0 && (
                 <>
-                  <h3 className="text-2xl  mt-16 mb-4">
-                    Invoice Lines
-                  </h3>
+                  <h3 className="text-2xl  mt-16 mb-4">Invoice Lines</h3>
                   <hr />
 
                   <div className="overflow-x-auto mt-8 ">

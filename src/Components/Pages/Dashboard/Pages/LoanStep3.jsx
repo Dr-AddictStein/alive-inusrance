@@ -182,6 +182,42 @@ const LoanStep3 = (props, fromLoan) => {
                     ))}
                   </select>
                 </td>
+                <td className="text-center">
+                  <select
+                    className=""
+                    onChange={(e) => handleDropdownChange(e, ln)}
+                  >
+                    {bankAccounts.map((pm) => (
+                      <option key={pm.Name} value={pm.Name}>
+                        {pm.Name}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td className="text-center">
+                  <select
+                    className=""
+                    onChange={(e) => handleDropdownChange(e, ln)}
+                  >
+                    {bankAccounts.map((pm) => (
+                      <option key={pm.Name} value={pm.Name}>
+                        {pm.Name}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td className="text-center">
+                  <select
+                    className=""
+                    onChange={(e) => handleDropdownChange(e, ln)}
+                  >
+                    {bankAccounts.map((pm) => (
+                      <option key={pm.Name} value={pm.Name}>
+                        {pm.Name}
+                      </option>
+                    ))}
+                  </select>
+                </td>
               </tr>
             );
           })}

@@ -171,24 +171,69 @@ const CreateNewTransaction = () => {
       }
     }
 
+    // if(selectedVendor===""){
+
+    // }
+
     let dex = [];
-    for (let i = 0; i < selectedMultiValue.length; i++) {
+
+    if (selectedVendor === "") {
       for (let j = 0; j < invoices.length; j++) {
-        if (selectedMultiValue[i].value === invoices[j].InvoiceNumber) {
-          const dateInputFrom = new Date(dateFrom);
-          const dateInputTo = new Date(dateTo);
-          const jsonDateString = invoices[j].Date;
-          const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
-          const jsonDate = new Date(jsonDateMilliseconds);
-
-          console.log("Date Check: ", dateInputFrom, dateInputTo, jsonDate);
-
-          if (jsonDate >= dateInputFrom && jsonDate <= dateInputTo) {
-            dex.push(invoices[j]);
+        let toPush = invoices[j];
+        for (let k = 0; k < vendors.length; k++) {
+          if (vendors[k].Name === invoices[j].Contact.Name) {
+            toPush["vendNum"] = vendors[k].AccountNumber;
+            break;
+          }
+        }
+        dex.push(toPush);
+      }
+    }
+    else {
+      if(selectedMultiValue.length===0){
+        for (let j = 0; j < invoices.length; j++) {
+          let toPush = invoices[j];
+          if(invoices[j].Contact.Name===selectedVendor){
+            for (let k = 0; k < vendors.length; k++) {
+              if (selectedVendor === invoices[j].Contact.Name) {
+                toPush["vendNum"] = vendors[k].AccountNumber;
+                break;
+              }
+            }
+            dex.push(toPush);
           }
         }
       }
+      else{
+        
+        for (let i = 0; i < selectedMultiValue.length; i++) {
+          for (let j = 0; j < invoices.length; j++) {
+            if (selectedMultiValue[i].value === invoices[j].InvoiceNumber) {
+              const dateInputFrom = new Date(dateFrom);
+              const dateInputTo = new Date(dateTo);
+              const jsonDateString = invoices[j].Date;
+              const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
+              const jsonDate = new Date(jsonDateMilliseconds);
+    
+              console.log("Date Check: ", dateInputFrom, dateInputTo, jsonDate);
+    
+              if (jsonDate >= dateInputFrom && jsonDate <= dateInputTo) {
+                let toPush = invoices[j];
+                for (let k = 0; k < vendors.length; k++) {
+                  if (vendors[k].Name === invoices[j].Contact.Name) {
+                    toPush["vendNum"] = vendors[k].AccountNumber;
+                    break;
+                  }
+                }
+                dex.push(toPush);
+              }
+            }
+          }
+        }
+      }
+      console.log("sss")
     }
+
 
     setInvoiceDex(dex);
   };
@@ -196,6 +241,7 @@ const CreateNewTransaction = () => {
   useEffect(() => {
     console.log("got 1", tVendorName, tVendorNumber);
     console.log("got tab", invoiceDex);
+    console.log("HerXOXO", invoiceDex);
   }, [invoiceDex, tVendorName, tVendorNumber]);
 
   function formatDate(dateString) {
@@ -456,8 +502,19 @@ const CreateNewTransaction = () => {
                 <div className="flex gap-3">
                   <button
                     onClick={() => {
+                      
                       setupTable();
                       setLineData([]);
+                      
+                      
+                      // setSelectedVendor("");
+                      // setDateFrom("");
+                      // setDateTo("");
+                      // setSelectedMultiValue([]);
+                      // setInvoiceDex([]);
+                      // settVendorName("");
+                      // settVendorNumber("");
+                      // setLineData([]);
                     }}
                     className="px-[20px] py-[8px] rounded-sm h-[40px] text-white bg-[#3f84e5]"
                   >
@@ -522,8 +579,10 @@ const CreateNewTransaction = () => {
                               <td className="text-center">
                                 {formatDate(inv.DueDate)}
                               </td>
-                              <td className="text-center">{tVendorName}</td>
-                              <td className="text-center">{tVendorNumber}</td>
+                              <td className="text-center">
+                                {inv.Contact.Name}
+                              </td>
+                              <td className="text-center">{inv.vendNum}</td>
                               <td className="text-center">{inv.Total}</td>
                               <td className="text-center">{inv.AmountDue}</td>
                               <td className="text-center">
