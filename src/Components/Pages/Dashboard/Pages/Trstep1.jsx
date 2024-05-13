@@ -78,7 +78,7 @@ const Trstep1 = () => {
         <select
           id="erpSelect"
           name="erpSelect"
-          className="mt-1 text-blue-400 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+          className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorERP}
           onChange={handleOptionChangeForSelectorsERP}
         >
@@ -101,7 +101,7 @@ const Trstep1 = () => {
         <select
           id="erpSelect"
           name="erpSelect"
-          className="mt-1 text-blue-400 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+          className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorBank}
           onChange={handleOptionChangeForSelectorsBank}
         >
@@ -125,7 +125,7 @@ const Trstep1 = () => {
         <select
           id="erpSelect"
           name="erpSelect"
-          className="mt-1 text-blue-400 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+          className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorOrg}
           onChange={handleOptionChangeForSelectorsOrg}
         >
@@ -149,7 +149,7 @@ const Trstep1 = () => {
         <select
           id="erpSelect"
           name="erpSelect"
-          className="mt-1 text-blue-400 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+          className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorService}
           onChange={handleOptionChangeForSelectorsService}
         >
