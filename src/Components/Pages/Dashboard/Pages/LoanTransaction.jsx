@@ -6,9 +6,8 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import { TextField } from "@mui/material";
-import Trstep1 from "./Trstep1";
-import TrStep3 from "./TrStep3";
-import LoanStep3 from "./LoanStep3";
+import LoanStep3 from './LoanStep3'
+import { Navigate, useNavigate } from "react-router-dom";
 
 const colourOptions = [
   { value: "ocean", label: "Ocean", color: "#00B8D9" },
@@ -19,6 +18,7 @@ const colourOptions = [
 ];
 
 const LoanTransaction = () => {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(1);
   const [access, setAccess] = useState(false);
 
@@ -50,6 +50,7 @@ const LoanTransaction = () => {
     if (isLastStep) {
       toast.success("Form submitted successfully");
       setActiveStep(4);
+      navigate("/dashboard/manage-transaction");
     } else {
       if (activeStep === 2) {
         let temp3Dat = [];
@@ -83,7 +84,7 @@ const LoanTransaction = () => {
         // setInvoiceDex([]);
         // settVendorName("");
         // settVendorNumber("");
-        setLineData([]);
+        // setLineData([]);
       }
       nextStep();
     }
@@ -189,12 +190,11 @@ const LoanTransaction = () => {
         }
         dex.push(toPush);
       }
-    }
-    else {
-      if(selectedMultiValue.length===0){
+    } else {
+      if (selectedMultiValue.length === 0) {
         for (let j = 0; j < invoices.length; j++) {
           let toPush = invoices[j];
-          if(invoices[j].Contact.Name===selectedVendor){
+          if (invoices[j].Contact.Name === selectedVendor) {
             for (let k = 0; k < vendors.length; k++) {
               if (selectedVendor === invoices[j].Contact.Name) {
                 toPush["vendNum"] = vendors[k].AccountNumber;
@@ -204,20 +204,20 @@ const LoanTransaction = () => {
             dex.push(toPush);
           }
         }
-      }
-      else{
-        
+      } else {
         for (let i = 0; i < selectedMultiValue.length; i++) {
           for (let j = 0; j < invoices.length; j++) {
             if (selectedMultiValue[i].value === invoices[j].InvoiceNumber) {
               const dateInputFrom = new Date(dateFrom);
               const dateInputTo = new Date(dateTo);
               const jsonDateString = invoices[j].Date;
-              const jsonDateMilliseconds = parseInt(jsonDateString.match(/\d+/)[0]);
+              const jsonDateMilliseconds = parseInt(
+                jsonDateString.match(/\d+/)[0]
+              );
               const jsonDate = new Date(jsonDateMilliseconds);
-    
+
               console.log("Date Check: ", dateInputFrom, dateInputTo, jsonDate);
-    
+
               if (jsonDate >= dateInputFrom && jsonDate <= dateInputTo) {
                 let toPush = invoices[j];
                 for (let k = 0; k < vendors.length; k++) {
@@ -232,9 +232,8 @@ const LoanTransaction = () => {
           }
         }
       }
-      console.log("sss")
+      console.log("sss");
     }
-
 
     setInvoiceDex(dex);
   };
@@ -307,6 +306,82 @@ const LoanTransaction = () => {
       );
     }
   };
+
+  function isSet(invID) {
+    for (let i = 0; i < lineData.length; i++) {
+      if (lineData[i].invID === invID) return true;
+    }
+    return false;
+  }
+
+  const [selectedOptionSelectorERP, setSelectedOptionSelectorERP] =
+    useState("");
+  const [selectedOptionSelectorBank, setSelectedOptionSelectorBank] =
+    useState("");
+  const [selectedOptionSelectorOrg, setSelectedOptionSelectorOrg] =
+    useState("");
+  const [selectedOptionSelectorService, setSelectedOptionSelectorService] =
+    useState("");
+
+  const handleOptionChangeForSelectorsERP = (event) => {
+    setSelectedOptionSelectorERP(event.target.value);
+  };
+  const handleOptionChangeForSelectorsBank = (event) => {
+    setSelectedOptionSelectorBank(event.target.value);
+  };
+  const handleOptionChangeForSelectorsOrg = (event) => {
+    setSelectedOptionSelectorOrg(event.target.value);
+  };
+  const handleOptionChangeForSelectorsService = (event) => {
+    setSelectedOptionSelectorService(event.target.value);
+  };
+
+  // transaction works starts here
+  const [erpApplications, setErpApplications] = useState([]);
+
+  const fetchErpApplications = async () => {
+    try {
+      const response = await fetch(
+        "../../../../../public/ERP Application Organization.json"
+      );
+      if (!response.ok) {
+        throw new Error("Could not fetch");
+      }
+      const data = await response.json();
+      setErpApplications(data);
+    } catch (error) {
+      console.log("Could not fetch", error);
+    }
+  };
+  useEffect(() => {
+    fetchErpApplications();
+  }, []);
+  const filteredOrganizations = selectedOptionSelectorERP
+    ? erpApplications.find((app) => app.name === selectedOptionSelectorERP)
+        ?.organizations
+    : [];
+
+  const [Banks, setBanks] = useState([]);
+
+  const fetchBanks = async () => {
+    try {
+      const response = await fetch("../../../../../public/Bank Services.json");
+      if (!response.ok) {
+        throw new Error("Could not fetch");
+      }
+      const data = await response.json();
+      setBanks(data);
+      console.log("sadasdsdsaad", Banks);
+    } catch (error) {
+      console.log("Could not fetch", error);
+    }
+  };
+  useEffect(() => {
+    fetchBanks();
+  }, []);
+  const filteredBanks = selectedOptionSelectorBank
+    ? Banks.find((app) => app.bankName === selectedOptionSelectorBank)?.services
+    : [];
 
   return (
     <div className="max-w-[1200px] mx-auto pt-10 rounded-lg">
@@ -393,19 +468,130 @@ const LoanTransaction = () => {
         {activeStep === 1 && (
           <>
             <div className="max-w-[400px] mx-auto py-20 space-y-5">
-              <Trstep1 />
+              {/* STEP 1 */}
+              <div>
+                <div className="mb-5 relative">
+                  <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Select ERP Application
+                  </label>
+                  <select
+                    id="erpSelect"
+                    name="erpSelect"
+                    className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+                    value={selectedOptionSelectorERP}
+                    onChange={handleOptionChangeForSelectorsERP}
+                    required="true"
+                  >
+                    <option disabled value="">
+                      Select ERP Application
+                    </option>
+                    {erpApplications.map((erpApplication) => {
+                      return (
+                        <option
+                          key={erpApplication}
+                          value={`${erpApplication.name}`}
+                        >
+                          {erpApplication.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div className="mt-6 mb-5 relative">
+                  <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Select Bank
+                  </label>
+                  <select
+                    id="erpSelect"
+                    name="erpSelect"
+                    className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+                    value={selectedOptionSelectorBank}
+                    onChange={handleOptionChangeForSelectorsBank}
+                    required="true"
+                  >
+                    <option disabled value="">
+                      Select Bank
+                    </option>
+                    {Banks.map((bank) => {
+                      return (
+                        <option key={bank} value={`${bank.bankName}`}>
+                          {bank.bankName}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+
+                <div className="mt-6 mb-5 relative">
+                  <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Select Organization
+                  </label>
+                  <select
+                    id="erpSelect"
+                    name="erpSelect"
+                    className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+                    value={selectedOptionSelectorOrg}
+                    onChange={handleOptionChangeForSelectorsOrg}
+                    required="true"
+                  >
+                    <option disabled value="">
+                      Select Organization
+                    </option>
+                    {filteredOrganizations.map((org) => {
+                      return (
+                        <option key={org} value={`${org.orgName}`}>
+                          {org.orgName}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+
+                <div className="mt-6 mb-5 relative">
+                  <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Select Service
+                  </label>
+                  <select
+                    id="erpSelect"
+                    name="erpSelect"
+                    className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+                    value={selectedOptionSelectorService}
+                    onChange={handleOptionChangeForSelectorsService}
+                    required="true"
+                  >
+                    <option disabled value="">
+                      Select Services
+                    </option>
+                    {filteredBanks.map((ser) => {
+                      return (
+                        <option key={ser} value={`${ser}`}>
+                          {ser}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
               <div className="mt-4">
                 <div className="flex justify-center items-center gap-5 py-20">
                   {/* Here all buttons */}
+
                   <button
-                    disabled
-                    onClick={previousStep}
+                    onClick={()=>{
+                      navigate('/dashboard/manage-transaction')
+                    }}
                     className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded "
-                  >
+                    >
                     Cancel
                   </button>
                   {!isLastStep && (
-                    <div
+                    <button
+                    disabled={
+                      selectedOptionSelectorBank === "" ||
+                      selectedOptionSelectorERP === "" ||
+                      selectedOptionSelectorOrg === "" ||
+                      selectedOptionSelectorService === ""
+                    }
                       onClick={handleButtonClick}
                       className="flex cursor-pointer justify-center items-center gap-2 bg-[#AEB2B4] px-10"
                     >
@@ -413,7 +599,7 @@ const LoanTransaction = () => {
                         Next{" "}
                       </button>
                       <img src={arrow2} alt="" />
-                    </div>
+                    </button>
                   )}
                 </div>
               </div>
@@ -505,6 +691,15 @@ const LoanTransaction = () => {
                     onClick={() => {
                       setupTable();
                       setLineData([]);
+
+                      // setSelectedVendor("");
+                      // setDateFrom("");
+                      // setDateTo("");
+                      // setSelectedMultiValue([]);
+                      // setInvoiceDex([]);
+                      // settVendorName("");
+                      // settVendorNumber("");
+                      // setLineData([]);
                     }}
                     className="px-[20px] py-[8px] rounded-sm h-[40px] text-white bg-[#3f84e5]"
                   >
@@ -558,6 +753,7 @@ const LoanTransaction = () => {
                                   id={inv.InvoiceNumber}
                                   className="checkbox"
                                   onChange={handleLineData}
+                                  checked={isSet(inv.InvoiceNumber)}
                                 />
                               </td>
                               <td className="text-center">
@@ -637,19 +833,24 @@ const LoanTransaction = () => {
               <div className="flex justify-center items-center gap-5">
                 {/* Here all buttons */}
                 <button
-                  onClick={previousStep}
+                  onClick={()=>{
+                    navigate('/dashboard/manage-transaction')
+                  }}
                   className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded "
                 >
                   Cancel
                 </button>
                 {!isLastStep && (
-                  <div
+                  <button
+                  disabled={
+                    lineData.length===0
+                  }
                     onClick={handleButtonClick}
                     className="flex cursor-pointer justify-center items-center gap-2 bg-[#AEB2B4] px-10"
                   >
                     <button className=" text-white py-2 rounded ">Next </button>
                     <img src={arrow2} alt="" />
-                  </div>
+                  </button>
                 )}
               </div>
             </div>
@@ -674,7 +875,9 @@ const LoanTransaction = () => {
 
               <div className="flex justify-center items-center gap-5">
                 <button
-                  onClick={previousStep}
+                  onClick={()=>{
+                    navigate('/dashboard/manage-transaction')
+                  }}
                   className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded "
                 >
                   Cancel

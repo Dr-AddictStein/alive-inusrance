@@ -9,6 +9,7 @@ import ErpCOnnection from '../../Components/Pages/Dashboard/Pages/ErpCOnnection'
 import ErpHelp from '../../Components/Pages/Dashboard/Pages/ErpHelp'
 import CreateNewTransaction from '../../Components/Pages/Dashboard/Pages/CreateNewTransaction'
 import LoanTransaction from '../../Components/Pages/Dashboard/Pages/LoanTransaction'
+import ManageTransactions from '../../Components/Pages/Dashboard/Pages/ManageTransactions'
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/create-new-transaction',
                 element: <CreateNewTransaction />
+            },
+            {
+                path: '/dashboard/manage-transaction',
+                element: <ManageTransactions />
             },
             {
                 path: '/dashboard/create-new-loan',

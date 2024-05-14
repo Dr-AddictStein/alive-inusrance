@@ -81,6 +81,7 @@ const Trstep1 = () => {
           className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorERP}
           onChange={handleOptionChangeForSelectorsERP}
+          required="true"
         >
           <option disabled value="">
             Select ERP Application
@@ -104,6 +105,7 @@ const Trstep1 = () => {
           className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorBank}
           onChange={handleOptionChangeForSelectorsBank}
+          required="true"
         >
           <option disabled value="">
             Select Bank
@@ -128,6 +130,7 @@ const Trstep1 = () => {
           className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorOrg}
           onChange={handleOptionChangeForSelectorsOrg}
+          required="true"
         >
           <option disabled value="">
             Select Organization
@@ -152,6 +155,7 @@ const Trstep1 = () => {
           className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
           value={selectedOptionSelectorService}
           onChange={handleOptionChangeForSelectorsService}
+          required="true"
         >
           <option disabled value="">
             Select Services

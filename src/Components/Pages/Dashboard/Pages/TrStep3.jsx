@@ -165,7 +165,6 @@ const TrStep3 = (props, fromLoan) => {
                           break;
                         }
                       }
-                      console.log("ADDDDD@", ln.PaymetType);
                     }}
                   >
                     {paymentTypes.map((pm) => {
