@@ -1,0 +1,61 @@
+{
+    "aliveBanks": {
+      "bankID": 601,
+      "bankName": "HSBC UK",
+      "aliveERPCustBanks": [
+        {
+          "customerBankRelID": 701,
+          "applicationStatus": "Submitted",
+          "creationDate": "2024-01-01",
+          "startDate": "2024-01-01",
+          "endDate": "",
+          "aliveERPOrganizations": {
+            "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+            "erpOrganizationname": "Organization ABC",
+            "aliveAddresses": {
+              "addressID": 201,
+              "country": "US"
+            },
+            "aliveERPApplications": [
+              {
+                "erpApplicationID": 101,
+                "erpApplicationName": "Xero"
+              }
+            ],
+            "aliveERPCustBankServices": [
+              {
+                "custBankServiceID": 901,
+                "serviceName": "Payments",
+                "serviceCountry": "GB",
+                "serviceStatus": "Accepted",
+                "serviceRequestDate": "2024-01-01",
+                "startDate": "2024-01-01",
+                "endDate": "",
+                "noteToBank": "testNotes",
+                "notesFromBank": "use these credentials"
+              },
+              {
+                "custBankServiceID": 902,
+                "serviceName": "Payments",
+                "serviceCountry": "GB",
+                "serviceStatus": "Accepted",
+                "serviceRequestDate": "2024-01-01",
+                "startDate": "2024-01-01",
+                "endDate": "",
+                "noteToBank": "testNotes",
+                "notesFromBank": "use these credentials"
+              }
+            ]
+          },
+          "aliveERPOrgContacts": [
+            {
+              "erpOrgContactID": 301,
+              "emailID": "jdoe@erptestcustomer.com",
+              "phone": "999-999-1234"
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

@@ -1,0 +1,68 @@
+{
+    "aliveBanks": {
+      "bankID": 601,
+      "bankName": "HSBC UK",
+      "aliveERPCustBanks": {
+        "customerBankRelID": 701,
+        "creationDate": "2024-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationname": "Organization ABC",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero"
+          }
+        },
+        "aliveCustBankPayments": {
+          "custBankServiceID": 901,
+          "serviceName": "Payments",
+          "serviceCountry": "GB",
+          "notesFromBank": "use these credentials",
+          "aliveERPCustBankAuth": {
+            "bankProfileID": 801,
+            "clientID": "CUST123456",
+            "clientSecret": "asdf890asdfwe",
+            "clientProfileID": "CUST123456"
+          }
+        },
+        "aliveCustBankTradeLoans": {
+          "custBankServiceID": 902,
+          "serviceName": "Trade Loans",
+          "notesFromBank": "use these credentials",
+          "aliveERPCustBankAuth": {
+            "bankProfileID": 801,
+            "clientID": "CUST123456",
+            "clientSecret": "asdf890asdfwe"
+          },
+          "aliveERPCustBankTradeAccts": {
+            "tradeBankID": 701,
+            "tradeAccountNumber": "TRD0000123456",
+            "tradeAccountUsage": "Buyer Loan",
+            "maxLoanTenureDays": "180"
+          }
+        },
+        "aliveCustBankFXContract": {
+          "custBankServiceID": 902,
+          "serviceName": "Trade Loans",
+          "notesFromBank": "use these credentials",
+          "aliveFXTradeDetails": {
+            "FXForwardExchangeContractNum": "CUST124569",
+            "startDate": "2024-01-01",
+            "endDate": ""
+          }
+        },
+        "aliveCustBankStatements": {
+          "custBankServiceID": 902,
+          "serviceName": "Bank Statements",
+          "serviceStatus": "Accepted"
+        }
+      }
+    }
+  }
+  
