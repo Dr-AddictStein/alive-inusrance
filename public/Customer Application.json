@@ -53,6 +53,31 @@
                 "erpApplicationName": "Xero"
               }
             ]
+          },
+          {
+            "customerBankRelID": 702,
+            "applicationStatus": "In Progress",
+            "creationDate": "2024-01-01",
+            "startDate": "2024-01-01",
+            "endDate": null,
+            "aliveERPOrganizations": [
+              {
+                "erpOrganizationID": "57e5fb57-ee09-4c89-b42c-bb3b85246529",
+                "erpOrganizationName": "Organization DEF",
+                "aliveERPAddresses": [
+                  {
+                    "addressID": 201,
+                    "country": "India"
+                  }
+                ]
+              }
+            ],
+            "aliveERPApplications": [
+              {
+                "erpApplicationID": 101,
+                "erpApplicationName": "Venum"
+              }
+            ]
           }
         ]
       }

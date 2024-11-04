@@ -1,0 +1,287 @@
+        {activeStep === 2 && (
+          <div className="">
+            <div className="mx-auto">
+              <div className="flex gap-10 justify-around">
+                <div className="mt-6 mb-5 relative w-1/3">
+                  <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
+                    Vendor Name
+                  </label>
+                  <select
+                    id="erpSelect"
+                    name="erpSelect"
+                    className="mt-1  mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500  sm:text-sm rounded-md"
+                    value={selectedVendor}
+                    onChange={handleOptionChangeForSelectorsVendor}
+                  >
+                    <option disabled value="">
+                      Vendor Name
+                    </option>
+                    {vendors.map((contact) => {
+                      return (
+                        <option key={contact} value={`${contact.Name}`}>
+                          {contact.Name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div className="mt-6 mb-5 relative w-1/3">
+                  <label className="block z-40 text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Select Invoice
+                  </label>
+                  <Select
+                    value={selectedMultiValue}
+                    onChange={handleChangeMulti}
+                    options={options}
+                    isMulti
+                    styles={{
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        height: selectedMultiValue.length < 3 ? "55px" : "",
+                      }),
+                    }}
+                  />
+                </div>
+                <div className="mt-6 mb-5 relative w-1/3">
+                  <label className="block z-40 text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Invoice Date From
+                  </label>
+                  <TextField
+                    required
+                    fullWidth
+                    name="date"
+                    type="date"
+                    value={dateFrom}
+                    onChange={(e) => {
+                      setDateFrom(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="flex gap-10 justify-between">
+                <div className="relative w-1/3">
+                  <label className="block z-40 text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">
+                    Invoice Date to
+                  </label>
+                  <TextField
+                    required
+                    fullWidth
+                    name="date"
+                    type="date"
+                    value={dateTo}
+                    onChange={(e) => {
+                      setDateTo(e.target.value);
+                    }}
+                    style={{
+                      width: "374px",
+                    }}
+                  />
+                </div>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => {
+                      setupTable();
+                      setLineData([]);
+
+                      // setSelectedVendor("");
+                      // setDateFrom("");
+                      // setDateTo("");
+                      // setSelectedMultiValue([]);
+                      // setInvoiceDex([]);
+                      // settVendorName("");
+                      // settVendorNumber("");
+                      // setLineData([]);
+                    }}
+                    className="px-[20px] py-[8px] rounded-sm h-[40px] text-white bg-[#3f84e5]"
+                  >
+                    Search
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedVendor("");
+                      setDateFrom("");
+                      setDateTo("");
+                      setSelectedMultiValue([]);
+                      setInvoiceDex([]);
+                      settVendorName("");
+                      settVendorNumber("");
+                      setLineData([]);
+                    }}
+                    className="px-[20px] py-[8px] rounded-sm h-[40px] text-white bg-[#5D656A]"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+
+              {/* table starts from here */}
+
+              {invoiceDex.length > 0 && (
+                <>
+                  <h3 className="text-2xl  mt-16 mb-4">Invoices</h3>
+                  <hr />
+
+                  <div className="overflow-x-auto mt-8 ">
+                    <table className="table w-full">
+                      <thead>
+                        <th></th>
+                        <th>Number</th>
+                        <th>Date</th>
+                        <th>Due Date</th>
+                        <th>Vendor Name</th>
+                        <th>Vendor Number</th>
+                        <th>Invoice Amount</th>
+                        <th>Amount Due</th>
+                        <th>Currency</th>
+                      </thead>
+                      <tbody>
+                        {invoiceDex.map((inv) => {
+                          return (
+                            <tr key={inv.InvoiceNumber} className="border-b-2">
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  id={inv.InvoiceNumber}
+                                  className="checkbox"
+                                  onChange={handleLineData}
+                                  checked={isSet(inv.InvoiceNumber)}
+                                />
+                              </td>
+                              <td className="text-center">
+                                {inv.InvoiceNumber}{" "}
+                              </td>
+                              <td className="text-center">
+                                {formatDate(inv.Date)}
+                              </td>
+                              <td className="text-center">
+                                {formatDate(inv.DueDate)}
+                              </td>
+                              <td className="text-center">
+                                {inv.Contact.Name}
+                              </td>
+                              <td className="text-center">{inv.vendNum}</td>
+                              <td className="text-center">{inv.Total}</td>
+                              <td className="text-center">{inv.AmountDue}</td>
+                              <td className="text-center">
+                                {inv.CurrencyCode}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+
+              {lineData.length > 0 && (
+                <>
+                  <h3 className="text-2xl  mt-16 mb-4">Invoice Lines</h3>
+                  <hr />
+
+                  <div className="overflow-x-auto mt-8 ">
+                    <table className="table w-full">
+                      <thead>
+                        <th>Number</th>
+                        <th>Item</th>
+                        <th>Item Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                      </thead>
+                      <tbody>
+                        {lineData.map((ln) => {
+                          return (
+                            <tr key={ln} className="border-b-2">
+                              <td className="text-center">{ln.invID}</td>
+                              <td className="text-center">{ln.it}</td>
+                              <td className="text-center">{ln.desc}</td>
+                              <td className="text-center">{ln.quan}</td>
+                              <td className="text-center">{ln.uprice}</td>
+                              <td className="text-center">{ln.amount}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="flex justify-between items-center gap-5 py-10">
+              {activeStep > 1 && (
+                <div className="px-10 flex justify-center items-center gap-2">
+                  <img src={arrow1} alt="" />
+                  <button
+                    onClick={previousStep}
+                    className=" text-gray-400 py-2 rounded "
+                  >
+                    Previous
+                  </button>
+                </div>
+              )}
+
+              <div className="flex justify-center items-center gap-5">
+                {/* Here all buttons */}
+                <button
+                  onClick={()=>{
+                    navigate('/dashboard/manage-transaction')
+                  }}
+                  className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded "
+                >
+                  Cancel
+                </button>
+                {!isLastStep && (
+                  <button
+                  disabled={
+                    lineData.length===0
+                  }
+                    onClick={handleButtonClick}
+                    className="flex cursor-pointer justify-center items-center gap-2 bg-[#AEB2B4] px-10"
+                  >
+                    <button className=" text-white py-2 rounded ">Next </button>
+                    <img src={arrow2} alt="" />
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeStep === 3 && (
+          <div className="py-20">
+            <TrStep3 props={sendTo3} />
+            <div className="flex justify-between items-center gap-5 py-20">
+              {activeStep > 1 && (
+                <div className="px-10 flex justify-center items-center gap-2">
+                  <img src={arrow1} alt="" />
+                  <button
+                    onClick={previousStep}
+                    className=" text-gray-400 py-2 rounded"
+                  >
+                    Previous
+                  </button>
+                </div>
+              )}
+
+              <div className="flex justify-center items-center gap-5">
+                <button
+                  onClick={()=>{
+                    navigate('/dashboard/manage-transaction')
+                  }}
+                  className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded "
+                >
+                  Cancel
+                </button>
+                {isLastStep && (
+                  <button
+                    onClick={handleButtonClick}
+                    className="bg-[#AEB2B4] px-10 text-white py-2 rounded "
+                  >
+                    Submit
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
