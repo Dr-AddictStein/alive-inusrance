@@ -10,6 +10,9 @@ import ErpHelp from '../../Components/Pages/Dashboard/Pages/ErpHelp'
 import CreateNewTransaction from '../../Components/Pages/Dashboard/Pages/CreateNewTransaction'
 import LoanTransaction from '../../Components/Pages/Dashboard/Pages/LoanTransaction'
 import ManageTransactions from '../../Components/Pages/Dashboard/Pages/ManageTransactions'
+import CustomerApplication from '../../Components/Pages/Dashboard/Pages/CustomerApplication'
+import CustomerManagement from '../../Components/Pages/Dashboard/Pages/CustomerManagement'
+import Reports from '../../Components/Pages/Dashboard/Pages/Reports'
 
 const router = createBrowserRouter([
     {
@@ -53,6 +56,18 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/create-new-loan',
                 element: <LoanTransaction />
+            },
+            {
+                path: '/dashboard/customer-application',
+                element: <CustomerApplication />
+            },
+            {
+                path: '/dashboard/customer-management',
+                element: <CustomerManagement />
+            },
+            {
+                path: '/dashboard/reports',
+                element: <Reports />
             },
         ]
     }
