@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import CustomerServiceManagement from "./CustomerServiceManagement";
 
 const ViewCustomerApplication = ({ customerBankRelID }) => {
     function formatDate(dateString) {
@@ -93,6 +94,19 @@ const ViewCustomerApplication = ({ customerBankRelID }) => {
     const filteredServiceList = serviceList.filter((serv) =>
         serv.serviceName.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
+  const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] = useState(null);
+
+  const handleView = (customerBankRelID) => {
+    setSelectedCustomerBankRelID(customerBankRelID);  // Set the selected customerBankRelID
+    setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
+  };
+
+  if (viewCustomerDetails) {
+    // Render CustomerDetails component if viewCustomerDetails is true
+    return <CustomerServiceManagement customerBankRelID={selectedCustomerBankRelID} />;
+  }
 
 
 
@@ -258,7 +272,7 @@ const ViewCustomerApplication = ({ customerBankRelID }) => {
                                 <td className="py-2 text-center">{formatDate(serv.endDate)}</td>
                                 <td className="flex justify-center gap-2 ">
                                     <button className="bg-blue-500 text-white p-1 rounded-sm">Review</button>
-                                    <button className="bg-green-600 text-white p-1 rounded-sm">Accept</button>
+                                    <button onClick={()=>handleView(customerBankRelID)} className="bg-green-600 text-white p-1 rounded-sm">Accept</button>
                                     <button className="bg-red-500 text-white p-1 rounded-sm">Reject</button>
                                     <button className="bg-orange-500 text-white p-1 rounded-sm">Hold</button>
                                 </td>
