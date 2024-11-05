@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import ViewCustomerApplication from "./ViewCustomerApplication";
 
 const CustomerApplication = () => {
   function formatDate(dateString) {
@@ -142,6 +143,20 @@ const CustomerApplication = () => {
     setSelectedServices("");
     setFilteredApplications(aliveERPCustBanks); // Reset to show all
   };
+
+  const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
+  const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] = useState(null);
+
+  const handleView = (customerBankRelID) => {
+    setSelectedCustomerBankRelID(customerBankRelID);  // Set the selected customerBankRelID
+    setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
+  };
+
+  if (viewCustomerDetails) {
+    // Render CustomerDetails component if viewCustomerDetails is true
+    return <ViewCustomerApplication customerBankRelID={selectedCustomerBankRelID} />;
+  }
+
 
   return (
     <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
@@ -322,7 +337,7 @@ const CustomerApplication = () => {
                 <td className="py-2 text-center">{formatDate(bank.creationDate)}</td>
                 <td className="py-2 text-center">{bank.aliveERPApplications[0].erpApplicationName}</td>
                 <td className="flex justify-center">
-                  <button className="border border-slate-500 p-1">View</button>
+                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1">View</button>
                 </td>
               </tr>
             ))}
