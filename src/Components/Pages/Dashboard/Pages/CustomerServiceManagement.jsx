@@ -243,6 +243,16 @@ const CustomerServiceManagement = ({ customerBankRelID }) => {
                 </div>
             </div>
             <hr />
+            <div className="flex gap-5 my-6">
+                <div className="flex gap-2">
+                    <input type="checkbox" />
+                    <h3>Buyer Loans</h3>
+                </div>
+                <div className="flex gap-2">
+                    <input type="checkbox" />
+                    <h3>Seller Loans</h3>
+                </div>
+            </div>
             <div className="flex gap-10 justify-around">
                 <div className="mt-6 mb-5 relative w-1/3">
                     <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
