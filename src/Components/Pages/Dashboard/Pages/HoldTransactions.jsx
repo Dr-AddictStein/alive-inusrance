@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import ViewCustomerApplication from "./ViewCustomerApplication";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
-import HoldTransactions from "./HoldTransactions";
 
-const ManageTransactions = () => {
+const HoldTransactions = ({ customerBankRelID, onReturnValue }) => {
+  const sendValueBack = () => {
+    const value = false;
+    onReturnValue(value); // Send value back to Component A
+  };
   function formatDate(dateString) {
     const date = new Date(dateString); // Use the date string from JSON directly
     const months = [
@@ -120,30 +123,30 @@ const ManageTransactions = () => {
     const filtered = allApplications.filter((app) => {
       const matchesCustomerName = selectedCustomerName
         ? app.aliveERPOrganizations.erpOrganizationName
-          .toLowerCase()
-          .includes(selectedCustomerName.toLowerCase())
+            .toLowerCase()
+            .includes(selectedCustomerName.toLowerCase())
         : true;
       const matchesType = selectedType
         ? app.aliveERPOrganizations.aliveBillPaymentRequests.transactionType ===
-        selectedType
+          selectedType
         : true;
       const matchesErpApplication = selectedErpApplication
         ? app.aliveERPOrganizations.aliveERPApplications.erpApplicationName ===
-        selectedErpApplication
+          selectedErpApplication
         : true;
       const matchesCountry = selectedCountry
         ? app.aliveERPOrganizations.aliveAddresses.country === selectedCountry
         : true;
       const matchesStatus = selectedStatus
         ? app.aliveERPOrganizations.aliveBillPaymentRequests.requestStatus ===
-        selectedStatus
+          selectedStatus
         : true;
       const matchesDate = selectedDate
         ? new Date(
-          app.aliveERPOrganizations.aliveBillPaymentRequests.paymentRequestDate
-        )
-          .toISOString()
-          .split("T")[0] === selectedDate
+            app.aliveERPOrganizations.aliveBillPaymentRequests.paymentRequestDate
+          )
+            .toISOString()
+            .split("T")[0] === selectedDate
         : true;
 
       return (
@@ -185,7 +188,10 @@ const ManageTransactions = () => {
   if (viewCustomerDetails) {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
-      <HoldTransactions customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue} />
+      <ViewTransactionsDetails
+        customerBankRelID={selectedCustomerBankRelID}
+        onReturnValue={handleReturnValue}
+      />
     );
   }
 
@@ -206,154 +212,16 @@ const ManageTransactions = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
-      <h1 className="font-medium text-3xl mb-2">Manage Transactions</h1>
-      <hr />
-
-      {/* Search fields */}
-      <div className="flex gap-10 justify-around">
-        <div className="mt-6 mb-5 relative w-1/3">
-          {selectedCustomerName !== "" && (
-            <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-              Customer Name
-            </label>
-          )}
-          <input
-            id="customerName"
-            name="customerName"
-            className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 sm:text-sm rounded-md"
-            value={selectedCustomerName}
-            onChange={(e) => setSelectedCustomerName(e.target.value)}
-            placeholder="Customer Name"
-          />
+      <div className="flex gap-6">
+        <div className="">
+          <button onClick={sendValueBack} className="text-4xl">
+            <MdOutlineKeyboardBackspace />
+          </button>
         </div>
-        <div className="mt-6 mb-5 relative w-1/3">
-          {selectedType !== "" && (
-            <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-              Type
-            </label>
-          )}
-          <select
-            id="erpSelect"
-            name="erpSelect"
-            className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 sm:text-sm rounded-md"
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-          >
-            <option disabled value="">
-              Type
-            </option>
-            {transactionTypes.map((erp) => (
-              <option key={erp} value={erp}>
-                {erp}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mt-6 mb-5 relative w-1/3">
-          <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-            Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 sm:text-sm rounded-md"
-            onChange={handleDateChange}
-            placeholder="Select Date"
-          />
-        </div>
-      </div>
-
-      <div className="flex gap-10 justify-around">
-        <div className="mb-5 relative w-1/3">
-          {selectedErpApplication !== "" && (
-            <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-              ERP Application
-            </label>
-          )}
-          <select
-            id="erpSelect"
-            name="erpSelect"
-            className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 sm:text-sm rounded-md"
-            value={selectedErpApplication}
-            onChange={(e) => setSelectedErpApplication(e.target.value)}
-          >
-            <option disabled value="">
-              ERP Application
-            </option>
-            {erpApplicationNames.map((erp) => (
-              <option key={erp} value={erp}>
-                {erp}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-5 relative w-1/3">
-          {selectedCountry !== "" && (
-            <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-              Customer Country
-            </label>
-          )}
-          <select
-            id="countrySelect"
-            name="countrySelect"
-            className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 sm:text-sm rounded-md"
-            value={selectedCountry}
-            onChange={(e) => setSelectedCountry(e.target.value)}
-          >
-            <option disabled value="">
-              Customer Country
-            </option>
-            {countries.map((country) => (
-              <option key={country} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-5 relative w-1/3">
-          {selectedStatus !== "" && (
-            <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-              Transaction Status
-            </label>
-          )}
-          <select
-            id="servicesSelect"
-            name="servicesSelect"
-            className="mt-1 mb-5 block w-full pl-3 pr-10 py-4 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 sm:text-sm rounded-md"
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-          >
-            <option disabled value="">
-              Transaction Status
-            </option>
-            {requestStatuses.map((service) => (
-              <option key={service} value={service}>
-                {service}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div className="flex justify-end gap-2 mt-4">
-        <button
-          onClick={handleSearch}
-          className="bg-blue-500 text-white px-4 py-2 rounded-sm"
-        >
-          Search
-        </button>
-        <button
-          onClick={handleClear}
-          className="bg-slate-500 text-white px-4 py-2 rounded-sm"
-        >
-          Clear
-        </button>
+        <h1 className="font-medium text-3xl mb-4">Hold Transactions</h1>
       </div>
 
 
-      <h1 className="font-medium text-xl mb-2 mt-4">Customer Transactions</h1>
-      <hr />
       <div className="mt-6 w-1/4">
         <input
           type="text"
@@ -403,22 +271,22 @@ const ManageTransactions = () => {
                 <td className="text-center flex justify-center py-2">
                   {bank.aliveERPOrganizations.aliveBillPaymentRequests
                     .requestStatus === "Submitted" && (
-                      <div className="bg-blue-500 rounded-3xl px-4 py-1 text-white w-fit text-sm">
-                        Submitted
-                      </div>
-                    )}
+                    <div className="bg-blue-500 rounded-3xl px-4 py-1 text-white w-fit text-sm">
+                      Submitted
+                    </div>
+                  )}
                   {bank.aliveERPOrganizations.aliveBillPaymentRequests
                     .requestStatus === "In Progress" && (
-                      <div className="bg-orange-600 rounded-3xl px-4 py-1 text-white w-fit text-sm">
-                        In Progress
-                      </div>
-                    )}
+                    <div className="bg-orange-600 rounded-3xl px-4 py-1 text-white w-fit text-sm">
+                      In Progress
+                    </div>
+                  )}
                   {bank.aliveERPOrganizations.aliveBillPaymentRequests
                     .requestStatus === "Approved" && (
-                      <div className="bg-green-700 rounded-3xl px-4 py-1 text-white w-fit text-sm">
-                        Approved
-                      </div>
-                    )}
+                    <div className="bg-green-700 rounded-3xl px-4 py-1 text-white w-fit text-sm">
+                      Approved
+                    </div>
+                  )}
                 </td>
                 <td className="py-2 text-center">
                   {
@@ -436,9 +304,24 @@ const ManageTransactions = () => {
                   }
                 </td>
                 <td className="flex justify-center gap-3">
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1 text-white bg-orange-600">Hold</button>
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1 text-white bg-red-600">Reject</button>
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1 text-white bg-blue-500">Re-Process</button>
+                  <button
+                    onClick={() => handleView(bank.customerBankRelID)}
+                    className="border border-slate-500 p-1 text-white bg-orange-600"
+                  >
+                    Hold
+                  </button>
+                  <button
+                    onClick={() => handleView(bank.customerBankRelID)}
+                    className="border border-slate-500 p-1 text-white bg-red-600"
+                  >
+                    Reject
+                  </button>
+                  <button
+                    onClick={() => handleView(bank.customerBankRelID)}
+                    className="border border-slate-500 p-1 text-white bg-blue-500"
+                  >
+                    Re-Process
+                  </button>
                 </td>
               </tr>
             ))}
@@ -449,4 +332,4 @@ const ManageTransactions = () => {
   );
 };
 
-export default ManageTransactions
+export default HoldTransactions;
