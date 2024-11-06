@@ -102,7 +102,7 @@ const DasNavbar = () => {
                     </ul>
                     {click === 'transactions' && clicked && <div className='absolute top-[60px] left-0 space-y-2  py-3 px-5 w-[250px] shadow-2xl z-50 font-semibold bg-white text-blue-400'>
                         <div className='flex flex-col justify-center items-start gap-3'>
-                            <Link onClick={() => setClicked(false)} to='/dashboard/create-new-transaction' className='cursor-pointer '>Create New Transaction</Link>
+                            <Link onClick={() => setClicked(false)} to='/dashboard/review-transaction' className='cursor-pointer '>Review Transaction</Link>
                             <Link onClick={() => setClicked(false)} className='cursor-pointer '>Manage Transactions</Link>
                             <Link onClick={() => setClicked(false)} className='cursor-pointer '>Help</Link>
                         </div>

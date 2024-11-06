@@ -1,0 +1,86 @@
+{
+  "aliveBanks": {
+    "bankID": 601,
+    "bankName": "HSBC UK",
+    "aliveERPCustBanks": [
+      {
+        "customerBankRelID": 701,
+        "creationDate": "2024-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationName": "Organization ABC",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero"
+          },
+          "aliveBillPaymentRequests": {
+            "billPaymentRequestID": 3001,
+            "transactionType": "Bill Payment",
+            "paymentRequestDate": "2024-01-02",
+            "paymentAmount": "900.00",
+            "requestStatus": "Submitted",
+            "transactionCurrency": "USD"
+          }
+        }
+      },
+      {
+        "customerBankRelID": 701,
+        "creationDate": "2024-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationName": "Organization DEF",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Venum"
+          },
+          "aliveBillPaymentRequests": {
+            "billPaymentRequestID": 3002,
+            "transactionType": "Bill Payment",
+            "paymentRequestDate": "2024-01-02",
+            "paymentAmount": "900.00",
+            "requestStatus": "In Progress",
+            "transactionCurrency": "USD"
+          }
+        }
+      },
+      {
+        "customerBankRelID": 703,
+        "creationDate": "2024-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationName": "Organization GHI",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "QuickBooks"
+          },
+          "aliveBillPaymentRequests": {
+            "billPaymentRequestID": 3003,
+            "transactionType": "Bill Payment",
+            "paymentRequestDate": "2024-01-02",
+            "paymentAmount": "900.00",
+            "requestStatus": "Approved",
+            "transactionCurrency": "USD"
+          }
+        }
+      }
+    ]
+  }
+}

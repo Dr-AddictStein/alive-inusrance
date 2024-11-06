@@ -13,6 +13,7 @@ import ManageTransactions from '../../Components/Pages/Dashboard/Pages/ManageTra
 import CustomerApplication from '../../Components/Pages/Dashboard/Pages/CustomerApplication'
 import CustomerManagement from '../../Components/Pages/Dashboard/Pages/CustomerManagement'
 import Reports from '../../Components/Pages/Dashboard/Pages/Reports'
+import ReviewTransactions from '../../Components/Pages/Dashboard/Pages/ReviewTransactions'
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manage-transaction',
                 element: <ManageTransactions />
+            },
+            {
+                path: '/dashboard/review-transaction',
+                element: <ReviewTransactions />
             },
             {
                 path: '/dashboard/create-new-loan',
