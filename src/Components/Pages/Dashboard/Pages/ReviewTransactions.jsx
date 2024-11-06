@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import ViewCustomerApplication from "./ViewCustomerApplication";
+import ViewTransactionsDetails from "./ViewTransactionsDetails";
 
 const ReviewTransactions = () => {
   function formatDate(dateString) {
@@ -175,11 +176,15 @@ const ReviewTransactions = () => {
     setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
   };
 
+  const handleReturnValue = (value) => {
+    setViewCustomerDetails(value);
+  };
+
   const [searchNumber, setSearchNumber] = useState(""); // New state for search by Number
   if (viewCustomerDetails) {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
-      <ViewCustomerApplication customerBankRelID={selectedCustomerBankRelID} />
+      <ViewTransactionsDetails customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue} />
     );
   }
 
@@ -430,7 +435,7 @@ const ReviewTransactions = () => {
                   }
                 </td>
                 <td className="flex justify-center">
-                  <button className="border border-slate-500 p-1">View</button>
+                  <button onClick={()=>handleView(bank.customerBankRelID)} className="border border-slate-500 p-1">View</button>
                 </td>
               </tr>
             ))}

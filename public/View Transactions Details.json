@@ -1,0 +1,194 @@
+{
+  "aliveBanks": {
+    "bankID": 801,
+    "bankName": "HSBC UK",
+    "aliveERPCustBanks": [
+      {
+        "customerBankProfileID": 701,
+        "creationDate": "2022-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "2024-04-01",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575ef5b7-ce08-4e89-b42c-bb3b3f5246529",
+          "erpOrganizationName": "Organization ABC",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero"
+          },
+          "aliveCustBankServices": {
+            "custBankServiceID": 901,
+            "serviceName": "Payments",
+            "serviceCountry": "GB",
+            "domesticGlobalFlag": 0,
+            "aliveBankServices": {
+              "serviceID": 2001,
+              "serviceName": "Payments",
+              "serviceSubType": "FPS"
+            }
+          },
+          "aliveERPCustBankAuth": {
+            "bankProfileID": 801,
+            "clientID": "CUST123456",
+            "clientSecret": "8xsuda8osdfew",
+            "clientProfileID": "CUST123456"
+          }
+        },
+        "aliveBillPaymentRequests": {
+          "billPaymentRequestID": 3001,
+          "paymentRequestDate": "2024-01-02",
+          "paymentAmount": 3000.0,
+          "requestStatus": "Submitted",
+          "transactionCurrency": "USD",
+          "aliveERVendors": {
+            "vendorInternalID": 601,
+            "vendorName": "Amazon UK",
+            "vendorAddress1": "90 Main St",
+            "addressLine2": "Ste 12",
+            "addressLine3": "",
+            "city": "Albany",
+            "state": "NY",
+            "country": "US",
+            "vendorPostalCode": "12345",
+            "postalCodeExt": "6789",
+            "aliveERPVendorBankAccts": {
+              "vendorBankAcctID": 701,
+              "vendorBankName": "HSBC UK",
+              "bankAccountNumber": "098376012345",
+              "sortCode": "200052",
+              "IBAN": "GB29 NWBK 6016 1331 9268 19",
+              "branchNumber": "200052"
+            }
+          }
+        }
+      },
+      {
+        "customerBankProfileID": 702,
+        "creationDate": "2022-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "2024-04-01",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575ef5b7-ce08-4e89-b42c-bb3b3f5246529",
+          "erpOrganizationName": "Organization ABC",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero"
+          },
+          "aliveCustBankServices": {
+            "custBankServiceID": 901,
+            "serviceName": "Payments",
+            "serviceCountry": "GB",
+            "domesticGlobalFlag": 0,
+            "aliveBankServices": {
+              "serviceID": 2001,
+              "serviceName": "Payments",
+              "serviceSubType": "FPS"
+            }
+          },
+          "aliveERPCustBankAuth": {
+            "bankProfileID": 801,
+            "clientID": "CUST123456",
+            "clientSecret": "8xsuda8osdfew",
+            "clientProfileID": "CUST123456"
+          }
+        },
+        "aliveBillPaymentRequests": {
+          "billPaymentRequestID": 3001,
+          "paymentRequestDate": "2024-01-02",
+          "paymentAmount": 3000.0,
+          "requestStatus": "Submitted",
+          "transactionCurrency": "USD",
+          "aliveERVendors": {
+            "vendorInternalID": 601,
+            "vendorName": "Amazon UK",
+            "vendorAddress1": "90 Main St",
+            "addressLine2": "Ste 12",
+            "addressLine3": "",
+            "city": "Albany",
+            "state": "NY",
+            "country": "US",
+            "vendorPostalCode": "12345",
+            "postalCodeExt": "6789",
+            "aliveERPVendorBankAccts": {
+              "vendorBankAcctID": 701,
+              "vendorBankName": "HSBC UK",
+              "bankAccountNumber": "098376012345",
+              "sortCode": "200052",
+              "IBAN": "GB29 NWBK 6016 1331 9268 19",
+              "branchNumber": "200052"
+            }
+          }
+        }
+      },
+      {
+        "customerBankProfileID": 703,
+        "creationDate": "2022-01-01",
+        "startDate": "2024-01-01",
+        "endDate": "2024-04-01",
+        "aliveERPOrganizations": {
+          "erpOrganizationID": "575ef5b7-ce08-4e89-b42c-bb3b3f5246529",
+          "erpOrganizationName": "Organization ABC",
+          "aliveAddresses": {
+            "addressID": 201,
+            "country": "US"
+          },
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero"
+          },
+          "aliveCustBankServices": {
+            "custBankServiceID": 901,
+            "serviceName": "Payments",
+            "serviceCountry": "GB",
+            "domesticGlobalFlag": 0,
+            "aliveBankServices": {
+              "serviceID": 2001,
+              "serviceName": "Payments",
+              "serviceSubType": "FPS"
+            }
+          },
+          "aliveERPCustBankAuth": {
+            "bankProfileID": 801,
+            "clientID": "CUST123456",
+            "clientSecret": "8xsuda8osdfew",
+            "clientProfileID": "CUST123456"
+          }
+        },
+        "aliveBillPaymentRequests": {
+          "billPaymentRequestID": 3001,
+          "paymentRequestDate": "2024-01-02",
+          "paymentAmount": 3000.0,
+          "requestStatus": "Submitted",
+          "transactionCurrency": "USD",
+          "aliveERVendors": {
+            "vendorInternalID": 601,
+            "vendorName": "Amazon UK",
+            "vendorAddress1": "90 Main St",
+            "addressLine2": "Ste 12",
+            "addressLine3": "",
+            "city": "Albany",
+            "state": "NY",
+            "country": "US",
+            "vendorPostalCode": "12345",
+            "postalCodeExt": "6789",
+            "aliveERPVendorBankAccts": {
+              "vendorBankAcctID": 701,
+              "vendorBankName": "HSBC UK",
+              "bankAccountNumber": "098376012345",
+              "sortCode": "200052",
+              "IBAN": "GB29 NWBK 6016 1331 9268 19",
+              "branchNumber": "200052"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
