@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CustomerServiceManagement from "./CustomerServiceManagement";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
-const ViewCustomerApplication = ({ customerBankRelID ,onReturnValue}) => {
+const ViewCustomerApplication = ({ customerBankRelID, onReturnValue }) => {
     const sendValueBack = () => {
         const value = false;
         onReturnValue(value); // Send value back to Component A
@@ -101,20 +101,20 @@ const ViewCustomerApplication = ({ customerBankRelID ,onReturnValue}) => {
     );
 
     const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
-  const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] = useState(null);
+    const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] = useState(null);
 
-  const handleView = (customerBankRelID) => {
-    setSelectedCustomerBankRelID(customerBankRelID);  // Set the selected customerBankRelID
-    setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
-  };
-  const handleReturnValue = (value) => {
-    setViewCustomerDetails(value);
-  };
+    const handleView = (customerBankRelID) => {
+        setSelectedCustomerBankRelID(customerBankRelID);  // Set the selected customerBankRelID
+        setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
+    };
+    const handleReturnValue = (value) => {
+        setViewCustomerDetails(value);
+    };
 
-  if (viewCustomerDetails) {
-    // Render CustomerDetails component if viewCustomerDetails is true
-    return <CustomerServiceManagement customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue}/>;
-  }
+    if (viewCustomerDetails) {
+        // Render CustomerDetails component if viewCustomerDetails is true
+        return <CustomerServiceManagement customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue} />;
+    }
 
 
 
@@ -287,7 +287,7 @@ const ViewCustomerApplication = ({ customerBankRelID ,onReturnValue}) => {
                                 <td className="py-2 text-center">{formatDate(serv.endDate)}</td>
                                 <td className="flex justify-center gap-2 ">
                                     <button className="bg-blue-500 text-white p-1 rounded-sm">Review</button>
-                                    <button onClick={()=>handleView(customerBankRelID)} className="bg-green-600 text-white p-1 rounded-sm">Accept</button>
+                                    <button onClick={() => handleView(customerBankRelID)} className="bg-green-600 text-white p-1 rounded-sm">Accept</button>
                                     <button className="bg-red-500 text-white p-1 rounded-sm">Reject</button>
                                     <button className="bg-orange-500 text-white p-1 rounded-sm">Hold</button>
                                 </td>
