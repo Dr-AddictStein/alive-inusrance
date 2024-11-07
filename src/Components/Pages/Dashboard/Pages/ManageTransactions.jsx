@@ -5,6 +5,7 @@ import ViewCustomerApplication from "./ViewCustomerApplication";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
 import HoldTransactions from "./HoldTransactions";
 import CancelTransactions from "./CancelTransactions";
+import ReProcessTransactions from "./ReProcessTransactions";
 
 const ManageTransactions = () => {
   function formatDate(dateString) {
@@ -171,6 +172,7 @@ const ManageTransactions = () => {
 
   const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
   const [viewCustomerDetailsCancel, setViewCustomerDetailsCancel] = useState(false);
+  const [viewCustomerDetailsReProcess, setViewCustomerDetailsReProcess] = useState(false);
   const [selectedCustomerBank, setSelectedCustomerBank] =
     useState(null);
 
@@ -182,12 +184,19 @@ const ManageTransactions = () => {
     setSelectedCustomerBank(bank); // Set the selected customerBankRelID
     setViewCustomerDetailsCancel(true); // Toggle to show the CustomerDetails component
   };
+  const handleViewReProcess = (bank) => {
+    setSelectedCustomerBank(bank); // Set the selected customerBankRelID
+    setViewCustomerDetailsReProcess(true); // Toggle to show the CustomerDetails component
+  };
 
   const handleReturnValue = (value) => {
     setViewCustomerDetails(value);
   };
   const handleReturnValueCancel = (value) => {
     setViewCustomerDetailsCancel(value);
+  };
+  const handleReturnValueReProcess = (value) => {
+    setViewCustomerDetailsReProcess(value);
   };
 
   const [searchNumber, setSearchNumber] = useState(""); // New state for search by Number
@@ -201,6 +210,12 @@ const ManageTransactions = () => {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
       <CancelTransactions bank={selectedCustomerBank} onReturnValue={handleReturnValueCancel} />
+    );
+  }
+  if (viewCustomerDetailsReProcess) {
+    // Render CustomerDetails component if viewCustomerDetails is true
+    return (
+      <ReProcessTransactions bank={selectedCustomerBank} onReturnValue={handleReturnValueReProcess} />
     );
   }
 
@@ -453,7 +468,7 @@ const ManageTransactions = () => {
                 <td className="flex justify-center gap-3">
                   <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-orange-600">Hold</button>
                   <button onClick={() => handleViewCancel(bank)} className="border border-slate-500 p-1 text-white bg-red-600">Reject</button>
-                  <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-blue-500">Re-Process</button>
+                  <button onClick={() => handleViewReProcess(bank)} className="border border-slate-500 p-1 text-white bg-blue-500">Re-Process</button>
                 </td>
               </tr>
             ))}
