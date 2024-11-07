@@ -145,6 +145,9 @@ const CustomerApplication = () => {
   };
 
   const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
+  const handleReturnValue = (value) => {
+    setViewCustomerDetails(value);
+  };
   const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] = useState(null);
 
   const handleView = (customerBankRelID) => {
@@ -154,7 +157,7 @@ const CustomerApplication = () => {
 
   if (viewCustomerDetails) {
     // Render CustomerDetails component if viewCustomerDetails is true
-    return <ViewCustomerApplication customerBankRelID={selectedCustomerBankRelID} />;
+    return <ViewCustomerApplication customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue}/>;
   }
 
 

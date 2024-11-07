@@ -4,8 +4,13 @@ import { useNavigate } from "react-router-dom";
 import ToggleButton from 'react-toggle-button';
 import { Switch } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
-const CustomerServiceManagement = ({ customerBankRelID }) => {
+const CustomerServiceManagement = ({ customerBankRelID,onReturnValue }) => {
+    const sendValueBack = () => {
+        const value = false;
+        onReturnValue(value); // Send value back to Component A
+    };
     function formatDate(dateString) {
         const date = new Date(dateString); // Use the date string from JSON directly
         const months = [
@@ -111,7 +116,14 @@ const CustomerServiceManagement = ({ customerBankRelID }) => {
 
     return (
         <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
-            <h1 className="font-medium text-3xl mb-4">View Customer Application</h1>
+            <div className="flex gap-6">
+                <div className="">
+                    <button onClick={sendValueBack} className="text-4xl">
+                        <MdOutlineKeyboardBackspace />
+                    </button>
+                </div>
+                <h1 className="font-medium text-3xl mb-4">Customer Service Management</h1>
+            </div>
             <h1 className="font-medium text-xl mb-1">General</h1>
             <hr />
 
