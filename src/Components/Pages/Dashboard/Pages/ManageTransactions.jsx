@@ -169,11 +169,11 @@ const ManageTransactions = () => {
   };
 
   const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
-  const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] =
+  const [selectedCustomerBank, setSelectedCustomerBank] =
     useState(null);
 
-  const handleView = (customerBankRelID) => {
-    setSelectedCustomerBankRelID(customerBankRelID); // Set the selected customerBankRelID
+  const handleView = (bank) => {
+    setSelectedCustomerBank(bank); // Set the selected customerBankRelID
     setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
   };
 
@@ -185,7 +185,7 @@ const ManageTransactions = () => {
   if (viewCustomerDetails) {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
-      <HoldTransactions customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue} />
+      <HoldTransactions bank={selectedCustomerBank} onReturnValue={handleReturnValue} />
     );
   }
 
@@ -436,9 +436,9 @@ const ManageTransactions = () => {
                   }
                 </td>
                 <td className="flex justify-center gap-3">
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1 text-white bg-orange-600">Hold</button>
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1 text-white bg-red-600">Reject</button>
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1 text-white bg-blue-500">Re-Process</button>
+                  <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-orange-600">Hold</button>
+                  <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-red-600">Reject</button>
+                  <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-blue-500">Re-Process</button>
                 </td>
               </tr>
             ))}

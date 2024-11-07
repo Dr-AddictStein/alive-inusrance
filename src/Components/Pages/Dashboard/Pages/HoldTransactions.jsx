@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
 
-const HoldTransactions = ({ customerBankRelID, onReturnValue }) => {
+const HoldTransactions = ({ bank, onReturnValue }) => {
   const sendValueBack = () => {
     const value = false;
     onReturnValue(value); // Send value back to Component A
@@ -221,6 +221,15 @@ const HoldTransactions = ({ customerBankRelID, onReturnValue }) => {
         <h1 className="font-medium text-3xl mb-4">Hold Transactions</h1>
       </div>
 
+      <div className=" py-4">
+        {`
+        Note: The transactions can be put on hold for various reasons like
+        "Insufficient funds” in requested bank account, user requested for
+        putting hold on transaction fulfillment, etc. Upon completing the hold
+        process, the transaction status will be updated in customer portal
+        against the transaction(s) with hold reason note pouplated from bank
+        side.`}
+      </div>
 
       <div className="mt-6 w-1/4">
         <input
@@ -241,14 +250,15 @@ const HoldTransactions = ({ customerBankRelID, onReturnValue }) => {
               <th>Type</th>
               <th>Date</th>
               <th>Status</th>
+              <th>Amount</th>
               <th>Currency</th>
               <th>Customer Name</th>
               <th>ERP Application</th>
-              <th>Action</th>
+              <th>Hold Reason</th>
             </tr>
           </thead>
           <tbody>
-            {filteredApplications?.map((bank) => (
+            {
               <tr key={bank}>
                 <td className="py-2 text-center">
                   {
@@ -291,6 +301,12 @@ const HoldTransactions = ({ customerBankRelID, onReturnValue }) => {
                 <td className="py-2 text-center">
                   {
                     bank.aliveERPOrganizations.aliveBillPaymentRequests
+                      .paymentAmount
+                  }
+                </td>
+                <td className="py-2 text-center">
+                  {
+                    bank.aliveERPOrganizations.aliveBillPaymentRequests
                       .transactionCurrency
                   }
                 </td>
@@ -304,29 +320,20 @@ const HoldTransactions = ({ customerBankRelID, onReturnValue }) => {
                   }
                 </td>
                 <td className="flex justify-center gap-3">
-                  <button
-                    onClick={() => handleView(bank.customerBankRelID)}
-                    className="border border-slate-500 p-1 text-white bg-orange-600"
-                  >
-                    Hold
-                  </button>
-                  <button
-                    onClick={() => handleView(bank.customerBankRelID)}
-                    className="border border-slate-500 p-1 text-white bg-red-600"
-                  >
-                    Reject
-                  </button>
-                  <button
-                    onClick={() => handleView(bank.customerBankRelID)}
-                    className="border border-slate-500 p-1 text-white bg-blue-500"
-                  >
-                    Re-Process
-                  </button>
+                  {`Insufficient Funds`}
                 </td>
               </tr>
-            ))}
+            }
           </tbody>
         </table>
+        <div className="flex justify-end gap-2 mt-8">
+          <button className="bg-slate-500 text-white px-4 py-2 rounded-sm">
+            Release Hold
+          </button>
+          <button className="bg-slate-500 text-white px-4 py-2 rounded-sm">
+            Apply Hold
+          </button>
+        </div>
       </div>
     </div>
   );
