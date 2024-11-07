@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ViewCustomerApplication from "./ViewCustomerApplication";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
 import HoldTransactions from "./HoldTransactions";
+import CancelTransactions from "./CancelTransactions";
 
 const ManageTransactions = () => {
   function formatDate(dateString) {
@@ -169,6 +170,7 @@ const ManageTransactions = () => {
   };
 
   const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
+  const [viewCustomerDetailsCancel, setViewCustomerDetailsCancel] = useState(false);
   const [selectedCustomerBank, setSelectedCustomerBank] =
     useState(null);
 
@@ -176,9 +178,16 @@ const ManageTransactions = () => {
     setSelectedCustomerBank(bank); // Set the selected customerBankRelID
     setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
   };
+  const handleViewCancel = (bank) => {
+    setSelectedCustomerBank(bank); // Set the selected customerBankRelID
+    setViewCustomerDetailsCancel(true); // Toggle to show the CustomerDetails component
+  };
 
   const handleReturnValue = (value) => {
     setViewCustomerDetails(value);
+  };
+  const handleReturnValueCancel = (value) => {
+    setViewCustomerDetailsCancel(value);
   };
 
   const [searchNumber, setSearchNumber] = useState(""); // New state for search by Number
@@ -186,6 +195,12 @@ const ManageTransactions = () => {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
       <HoldTransactions bank={selectedCustomerBank} onReturnValue={handleReturnValue} />
+    );
+  }
+  if (viewCustomerDetailsCancel) {
+    // Render CustomerDetails component if viewCustomerDetails is true
+    return (
+      <CancelTransactions bank={selectedCustomerBank} onReturnValue={handleReturnValueCancel} />
     );
   }
 
@@ -437,7 +452,7 @@ const ManageTransactions = () => {
                 </td>
                 <td className="flex justify-center gap-3">
                   <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-orange-600">Hold</button>
-                  <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-red-600">Reject</button>
+                  <button onClick={() => handleViewCancel(bank)} className="border border-slate-500 p-1 text-white bg-red-600">Reject</button>
                   <button onClick={() => handleView(bank)} className="border border-slate-500 p-1 text-white bg-blue-500">Re-Process</button>
                 </td>
               </tr>
