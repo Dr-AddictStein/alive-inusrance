@@ -1,0 +1,57 @@
+{
+    "aliveERPConnections": [
+      {
+        "erpConnectionID": 401,
+        "apitokens": "asdfzxcdaedsfdsaers",
+        "connectionStatus": "Active",
+        "aliveERPConnections": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationname": "Organization ABC",
+          "erpClientID": "xeroAdmin",
+          "erpClientSecret": "xeroAdminSecret",
+          "activeFlag": "Y",
+          "startDate": "2024-01-01",
+          "endDate": "2024-01-01",
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero",
+            "erpVersion": "",
+            "activeFlag": "Y",
+            "paymentsEnabledFlag": "Y",
+            "tradeBuyerLoansFlag": "Y",
+            "tradeSellerLoansFlag": "Y",
+            "bankStatementsFlag": "Y",
+            "automatedJournalsFlag": "Y",
+            "dataExtractionFlag": "Y"
+          }
+        }
+      },
+      {
+        "erpConnectionID": 402,
+        "apitokens": "asdfzxcdaedsfdsaers",
+        "connectionStatus": "Active",
+        "aliveERPConnections": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationname": "Organization DEF",
+          "erpClientID": "xeroAdm12in",
+          "erpClientSecret": "xeroAdminSecret",
+          "activeFlag": "Y",
+          "startDate": "2024-01-01",
+          "endDate": "2024-01-01",
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero",
+            "erpVersion": "",
+            "activeFlag": "Y",
+            "paymentsEnabledFlag": "Y",
+            "tradeBuyerLoansFlag": "Y",
+            "tradeSellerLoansFlag": "Y",
+            "bankStatementsFlag": "Y",
+            "automatedJournalsFlag": "Y",
+            "dataExtractionFlag": "Y"
+          }
+        }
+      }
+    ]
+  }
+  
