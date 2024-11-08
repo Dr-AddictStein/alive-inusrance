@@ -1,0 +1,79 @@
+{
+    "aliveERPConnections": [
+      {
+        "erpConnectionID": 401,
+        "apitokens": "asdfzxcdaedsfdsaers",
+        "connectionStatus": "Active",
+        "aliveERPConnections": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationname": "Organization ABC",
+          "erpClientID": "xeroAdmin",
+          "erpClientSecret": "xeroAdminSecret",
+          "activeFlag": "Y",
+          "startDate": "2024-01-01",
+          "endDate": "2024-01-01",
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero",
+            "erpVersion": "",
+            "activeFlag": "Y",
+            "paymentsEnabledFlag": "Y",
+            "tradeBuyerLoansFlag": "Y",
+            "tradeSellerLoansFlag": "Y",
+            "bankStatementsFlag": "Y",
+            "automatedJournalsFlag": "Y",
+            "dataExtractionFlag": "Y"
+          },
+          "aliveERPOrgContacts": [
+            {
+              "erpOrgContactID": 301,
+              "firstName": "John",
+              "lastName": "Doe",
+              "emailID": "jdoe@erptestcustomer.com",
+              "phone": "999-999-1234",
+              "primaryFlag": "Y",
+              "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529"
+            }
+          ]
+        }
+      },
+      {
+        "erpConnectionID": 402,
+        "apitokens": "asdfzxcdaedsfdsaers",
+        "connectionStatus": "Active",
+        "aliveERPConnections": {
+          "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+          "erpOrganizationname": "Organization DEF",
+          "erpClientID": "xeroAdmin",
+          "erpClientSecret": "xeroAdminSecret",
+          "activeFlag": "Y",
+          "startDate": "2024-01-01",
+          "endDate": "2024-01-01",
+          "aliveERPApplications": {
+            "erpApplicationID": 101,
+            "erpApplicationName": "Xero",
+            "erpVersion": "",
+            "activeFlag": "Y",
+            "paymentsEnabledFlag": "Y",
+            "tradeBuyerLoansFlag": "Y",
+            "tradeSellerLoansFlag": "Y",
+            "bankStatementsFlag": "Y",
+            "automatedJournalsFlag": "Y",
+            "dataExtractionFlag": "Y"
+          },
+          "aliveERPOrgContacts": [
+            {
+              "erpOrgContactID": 301,
+              "firstName": "John",
+              "lastName": "Doe",
+              "emailID": "jdoe@erptestcustomer.com",
+              "phone": "999-999-1234",
+              "primaryFlag": "Y",
+              "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  

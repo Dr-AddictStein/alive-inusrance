@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import ViewCustomerApplication from "./ViewCustomerApplication";
+import ViewERPConnection from "./ViewERPConnection";
 
 const ErpCOnnection = () => {
   function formatDate(dateString) {
@@ -157,7 +158,7 @@ const ErpCOnnection = () => {
 
   if (viewCustomerDetails) {
     // Render CustomerDetails component if viewCustomerDetails is true
-    return <ViewCustomerApplication customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue} />;
+    return <ViewERPConnection customerBankRelID={selectedCustomerBankRelID} onReturnValue={handleReturnValue} />;
   }
 
 
@@ -310,7 +311,7 @@ const ErpCOnnection = () => {
                 <td className="py-2 text-center">{formatDate(bank.aliveERPConnections.startDate)}</td>
                 <td className="py-2 text-center">{formatDate(bank.aliveERPConnections.endDate)}</td>
                 <td className="flex justify-center">
-                  <button onClick={() => handleView(bank.customerBankRelID)} className="border border-slate-500 p-1">Manage</button>
+                  <button onClick={() => handleView(bank.erpConnectionID)} className="border border-slate-500 p-1">Manage</button>
                 </td>
               </tr>
             ))}
