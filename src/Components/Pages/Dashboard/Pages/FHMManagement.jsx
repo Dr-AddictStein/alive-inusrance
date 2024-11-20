@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
+import SetupFHMDataFeeds from "./SetupFHMDataFeeds";
 
 const FHMManagement = () => {
   function formatDate(dateString) {
@@ -166,7 +167,7 @@ const FHMManagement = () => {
   if (viewCustomerDetails) {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
-      <ViewTransactionsDetails
+      <SetupFHMDataFeeds
         customerBankRelID={selectedCustomerBankRelID}
         onReturnValue={handleReturnValue}
       />
