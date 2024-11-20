@@ -14,6 +14,7 @@ import CustomerApplication from '../../Components/Pages/Dashboard/Pages/Customer
 import CustomerManagement from '../../Components/Pages/Dashboard/Pages/CustomerManagement'
 import Reports from '../../Components/Pages/Dashboard/Pages/Reports'
 import ReviewTransactions from '../../Components/Pages/Dashboard/Pages/ReviewTransactions'
+import FHMManagement from '../../Components/Pages/Dashboard/Pages/FHMManagement'
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/reports',
                 element: <Reports />
+            },
+            {
+                path: '/dashboard/fhm-management',
+                element: <FHMManagement />
             },
         ]
     }

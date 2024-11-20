@@ -1,0 +1,47 @@
+{
+    "aliveBanks": {
+      "bankID": 601,
+      "bankName": "HSBC UK",
+      "aliveERPCustBanks": [
+        {
+          "customerBankRelID": 902,
+          "applicationStatus": "Submitted",
+          "creationDate": "2024-01-01",
+          "startDate": "2024-01-01",
+          "endDate": "",
+          "aliveERPOrganizations": {
+            "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+            "erpOrganizationname": "Organization ABC",
+            "aliveAddresses": {
+              "addressID": 201,
+              "country": "US"
+            },
+            "aliveERPApplications": {
+              "erpApplicationID": 101,
+              "erpApplicationName": "Xero"
+            }
+          }
+        },
+        {
+          "customerBankRelID": 903,
+          "applicationStatus": "Approved",
+          "creationDate": "2024-01-01",
+          "startDate": "2024-01-01",
+          "endDate": "",
+          "aliveERPOrganizations": {
+            "erpOrganizationID": "675efb57-ee08-4c89-b42c-bb3b85246529",
+            "erpOrganizationname": "Organization DEF",
+            "aliveAddresses": {
+              "addressID": 201,
+              "country": "US"
+            },
+            "aliveERPApplications": {
+              "erpApplicationID": 101,
+              "erpApplicationName": "Xero"
+            }
+          }
+        }
+      ]
+    }
+  }
+  

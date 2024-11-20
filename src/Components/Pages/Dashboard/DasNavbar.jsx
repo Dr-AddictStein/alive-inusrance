@@ -115,7 +115,7 @@ const DasNavbar = () => {
                             setClick('administration')
                             setClicked(!clicked)
                         }} className='flex justify-center items-center gap-1 relative cursor-pointer hover:text-blue-400'>
-                            <li className=''>Administration</li>
+                            <li className=''>FHM Management</li>
 
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" stroke='#000000' viewBox="0 0 20 20" >
                                 <path fillRule="evenodd" d="M10 12a1 1 0 0 1-.707-.293l-4-4a1 1 0 1 1 1.414-1.414L10 9.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4A1 1 0 0 1 10 12z" clipRule="evenodd" />
@@ -124,9 +124,8 @@ const DasNavbar = () => {
                     </ul>
                     {click === 'administration' && clicked && <div className='absolute top-[60px] left-0 space-y-2  py-3 px-5 w-[250px] shadow-2xl z-50 font-semibold bg-white text-blue-400'>
                         <div className='flex flex-col justify-center items-start gap-3'>
-                            <Link onClick={() => setClicked(false)} className='cursor-pointer '>Test 1</Link>
-                            <Link onClick={() => setClicked(false)} className='cursor-pointer '>Test 2</Link>
-                            <Link onClick={() => setClicked(false)} className='cursor-pointer '>Test 3</Link>
+                            <Link onClick={() => setClicked(false)} to={'/dashboard/fhm-management'} className='cursor-pointer '>Service Management</Link>
+                            <Link onClick={() => setClicked(false)} to={'/dashboard/fhm-management'} className='cursor-pointer '>Process Management</Link>
                         </div>
                     </div>}
                 </div>
