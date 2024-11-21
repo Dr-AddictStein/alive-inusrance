@@ -398,7 +398,7 @@ const ManageTransactions = () => {
       <div className="overflow-x-auto mt-10">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr className="border-b-[1px] border-b-slate-400">
               <th>Number</th>
               <th>Type</th>
               <th>Date</th>
@@ -411,7 +411,7 @@ const ManageTransactions = () => {
           </thead>
           <tbody>
             {filteredApplications?.map((bank) => (
-              <tr key={bank}>
+              <tr key={bank} className="border-b-[1px] border-b-slate-400">
                 <td className="py-2 text-center">
                   {
                     bank.aliveERPOrganizations.aliveBillPaymentRequests

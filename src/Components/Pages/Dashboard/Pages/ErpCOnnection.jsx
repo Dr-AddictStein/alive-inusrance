@@ -273,7 +273,7 @@ const ErpCOnnection = () => {
       <div className="overflow-x-auto mt-20">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr className="border-b-[1px] border-b-slate-400">
               <th>ERP Application</th>
               <th>Organization Name</th>
               <th>Connection Status</th>
@@ -285,7 +285,7 @@ const ErpCOnnection = () => {
           </thead>
           <tbody>
             {filteredApplications?.map((bank) => (
-              <tr key={bank}>
+              <tr key={bank} className="border-b-[1px] border-b-slate-400">
                 <td className="py-2 text-center">{bank.aliveERPConnections.aliveERPApplications.erpApplicationName}</td>
                 <td className="py-2 text-center">
                   {bank.aliveERPConnections.erpOrganizationname}

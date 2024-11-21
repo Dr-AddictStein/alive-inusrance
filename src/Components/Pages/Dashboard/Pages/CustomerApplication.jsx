@@ -304,7 +304,7 @@ const CustomerApplication = () => {
       <div className="overflow-x-auto mt-20">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr className="border-b-[1px] border-b-slate-400">
               <th>Customer Name</th>
               <th>Country</th>
               <th>Application Status</th>
@@ -315,7 +315,7 @@ const CustomerApplication = () => {
           </thead>
           <tbody>
             {filteredApplications.map((bank) => (
-              <tr key={bank.creationDate}>
+              <tr key={bank.creationDate} className="border-b-[1px] border-b-slate-400">
                 <td className="py-2 text-center">{bank.aliveERPOrganizations[0].erpOrganizationName}</td>
                 <td className="py-2 text-center">
                   {bank.aliveERPOrganizations[0].aliveERPAddresses[0].country}
