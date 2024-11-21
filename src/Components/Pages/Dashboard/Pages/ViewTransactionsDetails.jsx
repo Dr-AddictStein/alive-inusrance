@@ -115,7 +115,7 @@ const ViewTransactionsDetails = ({ customerBankRelID,onReturnValue  }) => {
 
     return (
         <>
-            <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
+            <div className="max-w-[1200px] mx-auto pt-10 rounded-lg ">
                 <div className="flex gap-6">
                     <div className="">
                     <button onClick={sendValueBack} className="text-4xl"><MdOutlineKeyboardBackspace /></button>
@@ -307,7 +307,7 @@ const ViewTransactionsDetails = ({ customerBankRelID,onReturnValue  }) => {
                 <div className="flex gap-10 justify-around">
                     <div className="mb-5 relative w-full">
                         <label className="block text-sm font-medium absolute -top-2 px-2 bg-white left-3 text-gray-700">
-                            Processing Errors (From Bacnk APIs)
+                            Processing Errors (From Bank APIs)
                         </label>
                         <input
                             id="customerName"

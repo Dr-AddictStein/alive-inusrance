@@ -49,7 +49,7 @@ const CancelTransactions = ({ bank, onReturnValue }) => {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
+    <div className="max-w-[1200px] mx-auto pt-10 rounded-lg ">
       <div className="flex gap-6">
         <div className="">
           <button onClick={sendValueBack} className="text-4xl">
@@ -61,12 +61,8 @@ const CancelTransactions = ({ bank, onReturnValue }) => {
 
       <div className=" py-4">
         {`
-          Note: The transactions can be put on hold for various reasons like
-          "Insufficient funds” in requested bank account, user requested for
-          putting hold on transaction fulfillment, etc. Upon completing the hold
-          process, the transaction status will be updated in customer portal
-          against the transaction(s) with hold reason note pouplated from bank
-          side.`}
+          Note: The transactions can be canceled for various reasons like "Invalid Payload", "Invalid Bank Account Details", user requested to cancel the transaction, etc. Upon successful cancellation, the transaction status will be updated to "Canceled"
+in customer portal against selected transactions along with cancellation reason.`}
       </div>
 
       <div className="mt-6 w-1/4">
@@ -119,22 +115,22 @@ const CancelTransactions = ({ bank, onReturnValue }) => {
                 <td className="text-center flex justify-center py-2">
                   {bank.aliveERPOrganizations.aliveBillPaymentRequests
                     .requestStatus === "Submitted" && (
-                    <div className="bg-blue-500 rounded-3xl px-4 py-1 text-white w-fit text-sm">
-                      Submitted
-                    </div>
-                  )}
+                      <div className="bg-blue-500 rounded-3xl px-4 py-1 text-white w-fit text-sm">
+                        Submitted
+                      </div>
+                    )}
                   {bank.aliveERPOrganizations.aliveBillPaymentRequests
                     .requestStatus === "In Progress" && (
-                    <div className="bg-orange-600 rounded-3xl px-4 py-1 text-white w-fit text-sm">
-                      In Progress
-                    </div>
-                  )}
+                      <div className="bg-orange-600 rounded-3xl px-4 py-1 text-white w-fit text-sm">
+                        In Progress
+                      </div>
+                    )}
                   {bank.aliveERPOrganizations.aliveBillPaymentRequests
                     .requestStatus === "Approved" && (
-                    <div className="bg-green-700 rounded-3xl px-4 py-1 text-white w-fit text-sm">
-                      Approved
-                    </div>
-                  )}
+                      <div className="bg-green-700 rounded-3xl px-4 py-1 text-white w-fit text-sm">
+                        Approved
+                      </div>
+                    )}
                 </td>
                 <td className="py-2 text-center">
                   {

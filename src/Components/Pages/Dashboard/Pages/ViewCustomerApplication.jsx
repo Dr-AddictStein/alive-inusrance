@@ -120,7 +120,7 @@ const ViewCustomerApplication = ({ customerBankRelID, onReturnValue }) => {
 
 
     return (
-        <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
+        <div className="max-w-[1200px] mx-auto pt-10 rounded-lg ">
             <div className="flex gap-6">
                 <div className="">
                     <button onClick={sendValueBack} className="text-4xl">
@@ -288,7 +288,7 @@ const ViewCustomerApplication = ({ customerBankRelID, onReturnValue }) => {
                                 <td className="flex justify-center gap-2 ">
                                     <button className="bg-blue-500 text-white p-1 rounded-sm">Review</button>
                                     <button onClick={() => handleView(customerBankRelID)} className="bg-green-600 text-white p-1 rounded-sm">Accept</button>
-                                    <button className="bg-red-500 text-white p-1 rounded-sm">Reject</button>
+                                    <button className="bg-red-700 text-white p-1 rounded-sm">Reject</button>
                                     <button className="bg-orange-500 text-white p-1 rounded-sm">Hold</button>
                                 </td>
                             </tr>

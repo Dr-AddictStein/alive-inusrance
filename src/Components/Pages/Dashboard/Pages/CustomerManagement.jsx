@@ -159,7 +159,7 @@ const CustomerManagement = () => {
 
 
   return (
-    <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
+    <div className="max-w-[1200px] mx-auto pt-10 rounded-lg ">
       <h1 className="font-medium text-3xl mb-2">Manage Customers</h1>
       <hr />
 

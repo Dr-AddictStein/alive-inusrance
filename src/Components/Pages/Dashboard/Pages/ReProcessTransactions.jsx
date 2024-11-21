@@ -49,7 +49,7 @@ const ReProcessTransactions = ({ bank, onReturnValue }) => {
     };
 
     return (
-        <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
+        <div className="max-w-[1200px] mx-auto pt-10 rounded-lg ">
             <div className="flex gap-6">
                 <div className="">
                     <button onClick={sendValueBack} className="text-4xl">
@@ -61,12 +61,7 @@ const ReProcessTransactions = ({ bank, onReturnValue }) => {
 
             <div className=" py-4">
                 {`
-            Note: The transactions can be put on hold for various reasons like
-            "Insufficient funds” in requested bank account, user requested for
-            putting hold on transaction fulfillment, etc. Upon completing the hold
-            process, the transaction status will be updated in customer portal
-            against the transaction(s) with hold reason note pouplated from bank
-            side.`}
+            Note: The transactions which has failed to complete due to various reasons like transmission errors, API errors or server down issues, etc can be reprocessed by bank admin to complete the transaction. Upon successful reprocessing. The transactions will be transmitted to bank and the status from API response will be updated to transactions in customer portal.`}
             </div>
 
             <div className="mt-6 w-1/4">

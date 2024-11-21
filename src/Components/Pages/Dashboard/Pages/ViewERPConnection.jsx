@@ -61,7 +61,7 @@ const ViewERPConnection = ({ customerBankRelID, onReturnValue }) => {
     setIsSecretVisible(!isSecretVisible);
   };
   return (
-    <div className="max-w-[1200px] mx-auto pt-10 rounded-lg h-[3000px]">
+    <div className="max-w-[1200px] mx-auto pt-10 rounded-lg ">
       <div className="flex gap-6">
                 <div className="">
                     <button onClick={sendValueBack} className="text-4xl">
