@@ -6,6 +6,7 @@ import router from './Others/router/router.jsx'
 import NavbarContextProvider from './Others/context/NavbarContext.jsx'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '@fontsource/montserrat'; // Defaults to 400 weight
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
