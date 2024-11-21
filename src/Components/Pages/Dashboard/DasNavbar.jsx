@@ -125,7 +125,7 @@ const DasNavbar = () => {
                     {click === 'administration' && clicked && <div className='absolute top-[60px] left-0 space-y-2  py-3 px-5 w-[250px] shadow-2xl z-50 font-semibold bg-white text-blue-400'>
                         <div className='flex flex-col justify-center items-start gap-3'>
                             <Link onClick={() => setClicked(false)} to={'/dashboard/fhm-management'} className='cursor-pointer '>Service Management</Link>
-                            <Link onClick={() => setClicked(false)} to={'/dashboard/fhm-management'} className='cursor-pointer '>Process Management</Link>
+                            <Link onClick={() => setClicked(false)} to={'/dashboard/fhm-process-management'} className='cursor-pointer '>Process Management</Link>
                         </div>
                     </div>}
                 </div>

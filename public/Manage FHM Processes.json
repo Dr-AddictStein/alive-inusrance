@@ -1,0 +1,68 @@
+{
+    "aliveBanks": {
+      "bankID": 601,
+      "bankName": "HSBC UK",
+      "aliveERPCustBanks": [
+        {
+          "customerBankRelID": 701,
+          "applicationStatus": "Submitted",
+          "creationDate": "2024-01-01",
+          "startDate": "2024-01-01",
+          "endDate": "2024-01-01",
+          "aliveERPOrganizations": {
+            "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+            "erpOrganizationname": "Organization ABC",
+            "aliveAddresses": {
+              "addressID": 201,
+              "country": "US"
+            },
+            "aliveERPApplications": {
+              "erpApplicationID": 101,
+              "erpApplicationName": "Xero"
+            },
+            "aliveERPOrgContacts": {
+              "erpOrgContactID": 301,
+              "emailID": "jdoe@erptestcustomer.com",
+              "phone": "999-999-1234"
+            }
+          },
+          "aliveERPCustBankServices": [
+            {
+              "custBankServiceID": 902,
+              "serviceCountry": "GB",
+              "serviceName": "Financial Health Monitoring",
+              "aliveCustFHMProcessRequests": [
+                {
+                  "fhmProcessRequestID": 1234,
+                  "custFHMFeedID": 1001,
+                  "custBankServiceID": 902,
+                  "aliveCustFHMDataServices": {
+                    "fhmDataServiceID": 801,
+                    "fhmDataserviceName": "Accounts Payables",
+                    "activeFlag": "Y"
+                  },
+                  "processStatus": "Success",
+                  "processStartDate": "2024-04-01 23:00:00",
+                  "processEndDate": "2024-04-01 23:05:00"
+                },
+                {
+                  "fhmProcessRequestID": 1235,
+                  "custFHMFeedID": 1002,
+                  "custBankServiceID": 902,
+                  "aliveCustFHMDataServices": {
+                    "fhmDataServiceID": 802,
+                    "fhmDataserviceName": "Accounts Receivable",
+                    "activeFlag": "Y"
+                  },
+                  "processStatus": "Error",
+                  "processStartDate": "2024-04-01 23:05:00",
+                  "processEndDate": "2024-04-01 23:10:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

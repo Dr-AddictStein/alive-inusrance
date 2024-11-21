@@ -15,6 +15,7 @@ import CustomerManagement from '../../Components/Pages/Dashboard/Pages/CustomerM
 import Reports from '../../Components/Pages/Dashboard/Pages/Reports'
 import ReviewTransactions from '../../Components/Pages/Dashboard/Pages/ReviewTransactions'
 import FHMManagement from '../../Components/Pages/Dashboard/Pages/FHMManagement'
+import FHMProcessManagement from '../../Components/Pages/Dashboard/Pages/FHMProcessManagement'
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/fhm-management',
                 element: <FHMManagement />
+            },
+            {
+                path: '/dashboard/fhm-process-management',
+                element: <FHMProcessManagement />
             },
         ]
     }
