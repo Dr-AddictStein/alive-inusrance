@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
 import SetupFHMDataFeeds from "./SetupFHMDataFeeds";
+import FHMScheduling from "./FHMScheduling";
 
 const FHMManagement = () => {
   function formatDate(dateString) {
@@ -151,6 +152,7 @@ const FHMManagement = () => {
   };
 
   const [viewCustomerDetails, setViewCustomerDetails] = useState(false);
+  const [viewCustomerDetails2, setViewCustomerDetails2] = useState(false);
   const [selectedCustomerBankRelID, setSelectedCustomerBankRelID] =
     useState(null);
 
@@ -158,9 +160,14 @@ const FHMManagement = () => {
     setSelectedCustomerBankRelID(customerBankRelID); // Set the selected customerBankRelID
     setViewCustomerDetails(true); // Toggle to show the CustomerDetails component
   };
+  const handleSc = (customerBankRelID) => {
+    setSelectedCustomerBankRelID(customerBankRelID); // Set the selected customerBankRelID
+    setViewCustomerDetails2(true); // Toggle to show the CustomerDetails component
+  };
 
   const handleReturnValue = (value) => {
     setViewCustomerDetails(value);
+    setViewCustomerDetails2(value);
   };
 
   const [searchNumber, setSearchNumber] = useState(""); // New state for search by Number
@@ -168,6 +175,15 @@ const FHMManagement = () => {
     // Render CustomerDetails component if viewCustomerDetails is true
     return (
       <SetupFHMDataFeeds
+        customerBankRelID={selectedCustomerBankRelID}
+        onReturnValue={handleReturnValue}
+      />
+    );
+  }
+  if (viewCustomerDetails2) {
+    // Render CustomerDetails component if viewCustomerDetails is true
+    return (
+      <FHMScheduling
         customerBankRelID={selectedCustomerBankRelID}
         onReturnValue={handleReturnValue}
       />
@@ -181,9 +197,7 @@ const FHMManagement = () => {
       setFilteredApplications(allApplications); // Reset if search field is empty
     } else {
       const filtered = allApplications.filter((app) =>
-        app.aliveERPOrganizations.aliveBillPaymentRequests.billPaymentRequestID
-          .toString()
-          .includes(e.target.value)
+        app.aliveERPOrganizations.erpOrganizationname.includes(e.target.value)
       );
       setFilteredApplications(filtered);
     }
@@ -385,7 +399,7 @@ const FHMManagement = () => {
                     Manage
                   </button>
                   <button
-                    onClick={() => handleView(bank.customerBankRelID)}
+                    onClick={() => handleSc(bank.customerBankRelID)}
                     className="border border-slate-500 p-1"
                   >
                     Schedule

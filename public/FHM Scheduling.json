@@ -1,0 +1,84 @@
+{
+    "aliveBanks": {
+      "bankID": 601,
+      "bankName": "HSBC UK",
+      "aliveERPCustBanks": [
+        {
+          "customerBankRelID": 701,
+          "applicationStatus": "Submitted",
+          "creationDate": "2024-01-01",
+          "startDate": "2024-01-01",
+          "endDate": "",
+          "aliveERPOrganizations": {
+            "erpOrganizationID": "575efb57-ee08-4c89-b42c-bb3b85246529",
+            "erpOrganizationname": "Organization ABC",
+            "aliveAddresses": {
+              "addressID": 201,
+              "country": "US"
+            },
+            "aliveERPApplications": {
+              "erpApplicationID": 101,
+              "erpApplicationName": "Xero"
+            },
+            "aliveERPOrgContacts": {
+              "erpOrgContactID": 301,
+              "emailID": "jdoe@erptestcustomer.com",
+              "phone": "999-999-1234"
+            }
+          },
+          "aliveERPCustBankServices": [
+            {
+              "custBankServiceID": 902,
+              "serviceName": "Financial Health Monitoring",
+              "serviceCountry": "GB",
+              "serviceStatus": "Accepted",
+              "serviceRequestDate": "2024-01-01",
+              "startDate": "2024-01-01",
+              "endDate": "",
+              "noteToBank": "testNotes",
+              "notesFromBank": "use these credentials",
+              "aliveERPCustFHMTcs": {
+                "custFHMTcsId": 801,
+                "custBankServiceID": 902,
+                "fhmTerms": "asdfdsafsdfsdfsadfds",
+                "fhmOptinFlag": "Y"
+              },
+              "aliveCustFHMSchedules": [
+                {
+                  "custFHMScheduleID": 201,
+                  "custFHMFeedID": 1001,
+                  "custBankServiceID": 902,
+                  "aliveCustFHMDataServices": {
+                    "fhmDataServiceID": 801,
+                    "fhmDataserviceName": "Accounts Payables",
+                    "activeFlag": "Y"
+                  },
+                  "frequency": "Monthly",
+                  "scheduleStartDate": "2024-04-01",
+                  "scheduleEndDate": "2025-04-01",
+                  "notificationEmail": "abc@testERPCusotmer.com",
+                  "scheduleStatus": "Active"
+                },
+                {
+                  "custFHMScheduleID": 202,
+                  "custFHMFeedID": 1002,
+                  "custBankServiceID": 902,
+                  "aliveCustFHMDataServices": {
+                    "fhmDataServiceID": 802,
+                    "fhmDataserviceName": "Accounts Receivable",
+                    "activeFlag": "Y"
+                  },
+                  "frequency": "Monthly",
+                  "scheduleStartDate": "2024-04-01",
+                  "scheduleEndDate": "2025-04-01",
+                  "notificationEmail": "abc@testERPCusotmer.com",
+                  "scheduleStatus": "Active"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+  
