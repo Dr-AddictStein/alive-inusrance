@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ViewTransactionsDetails from "./ViewTransactionsDetails";
 import SetupFHMDataFeeds from "./SetupFHMDataFeeds";
 import FHMScheduling from "./FHMScheduling";
+import ReviewFHMProcessDetails from "./ReviewFHMProcessDetails";
 
 const FHMProcessManagement = () => {
     function formatDate(dateString) {
@@ -179,7 +180,7 @@ const FHMProcessManagement = () => {
     if (viewCustomerDetails) {
         // Render CustomerDetails component if viewCustomerDetails is true
         return (
-            <SetupFHMDataFeeds
+            <ReviewFHMProcessDetails
                 customerBankRelID={selectedCustomerBankRelID}
                 onReturnValue={handleReturnValue}
             />
@@ -401,6 +402,13 @@ const FHMProcessManagement = () => {
                                     {formatDate(
                                         bank.processEndDate
                                     )}
+                                </td>
+                                <td className="">
+                                    <div className="flex justify-center">
+                                        <button className="px-2 py-1 bg-slate-600 text-white rounded-sm" onClick={()=>handleView(allApplications[0].aliveERPCustBankServices[0].custBankServiceID)}>
+                                            View
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
