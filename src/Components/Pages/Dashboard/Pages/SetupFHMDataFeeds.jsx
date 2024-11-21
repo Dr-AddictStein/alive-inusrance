@@ -61,14 +61,14 @@ const SetupFHMDataFeeds = ({ customerBankRelID, onReturnValue }) => {
     useEffect(() => {
         if (allApplications) {
             const { aliveERPCustBanks } = allApplications;
-
+            
+            console.log("HERER aa", aliveERPCustBanks)
             // Use the find method to search for the customer with the matching customerBankRelID
             const customer = aliveERPCustBanks.find(
-                (bank) => bank.customerBankRelID === customerBankRelID
+                (bank) => bank.aliveERPCustBankServices.find((ss)=>ss.custBankServiceID===customerBankRelID) 
             );
 
             setUser(customer);
-            console.log("HERER aa", customer)
 
 
         }
